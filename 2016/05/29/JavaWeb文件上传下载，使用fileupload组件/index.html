@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png?v=6.5.0">
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="处理下载文件名乱码问题，包括某些情况下chrome出现的乱码。 一、引入jar包　　1. commons-fileupload-1.2.1.jar 　　2. commons-io-1.4.jar">
+<meta name="keywords" content="JavaWeb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb文件上传下载，使用fileupload组件">
+<meta property="og:url" content="http://www.sdwfqin.com/2016/05/29/JavaWeb文件上传下载，使用fileupload组件/index.html">
+<meta property="og:site_name" content="Zhang Qin&#39;s blog">
+<meta property="og:description" content="处理下载文件名乱码问题，包括某些情况下chrome出现的乱码。 一、引入jar包　　1. commons-fileupload-1.2.1.jar 　　2. commons-io-1.4.jar">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-27T02:19:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb文件上传下载，使用fileupload组件">
+<meta name="twitter:description" content="处理下载文件名乱码问题，包括某些情况下chrome出现的乱码。 一、引入jar包　　1. commons-fileupload-1.2.1.jar 　　2. commons-io-1.4.jar">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.sdwfqin.com/2016/05/29/JavaWeb文件上传下载，使用fileupload组件/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaWeb文件上传下载，使用fileupload组件 | Zhang Qin's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?717bd4be07b3622f876968917253cb6b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zhang Qin's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Hello Everyone</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/sdwfqin" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.sdwfqin.com/2016/05/29/JavaWeb文件上传下载，使用fileupload组件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="一介码农，主业安卓，副业创收">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaWeb文件上传下载，使用fileupload组件
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-05-29 21:20:46" itemprop="dateCreated datePublished" datetime="2016-05-29T21:20:46+08:00">2016-05-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>处理下载文件名乱码问题，包括某些情况下chrome出现的乱码。</p>
+<h2 id="一、引入jar包"><a href="#一、引入jar包" class="headerlink" title="一、引入jar包"></a>一、引入jar包</h2><p>　　1. commons-fileupload-1.2.1.jar</p>
+<p>　　2. commons-io-1.4.jar<br><a id="more"></a></p>
+<h2 id="二、文件上传"><a href="#二、文件上传" class="headerlink" title="二、文件上传"></a>二、文件上传</h2><ol>
+<li><p>html代码</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">"upload_test"</span> <span class="attr">action</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/FileServlet?method=upload"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">      用户名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userName"</span> &gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      文件: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"fileName"</span> &gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>java代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">upload</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    String uri = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//文件上传工厂</span></span><br><span class="line">        FileItemFactory factory = <span class="keyword">new</span> DiskFileItemFactory();</span><br><span class="line">        <span class="comment">//文件上传核心工具类</span></span><br><span class="line">        ServletFileUpload upload = <span class="keyword">new</span> ServletFileUpload(factory);</span><br><span class="line">        <span class="comment">/******设置大小限制参数******/</span></span><br><span class="line">        <span class="comment">// 单个文件大小限制</span></span><br><span class="line">        upload.setFileSizeMax(<span class="number">10</span>*<span class="number">1024</span>*<span class="number">1024</span>);</span><br><span class="line">        <span class="comment">// 总文件大小限制</span></span><br><span class="line">        upload.setSizeMax(<span class="number">50</span>*<span class="number">1024</span>*<span class="number">1024</span>);</span><br><span class="line">        <span class="comment">// 对中文文件编码处理</span></span><br><span class="line">        upload.setHeaderEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="comment">//判断： 当前表单是否为文件上传表单</span></span><br><span class="line">        <span class="keyword">if</span>(upload.isMultipartContent(request))&#123;</span><br><span class="line">            <span class="comment">//把请求数据转换为一个FileItem对象，再用集合封装</span></span><br><span class="line">            List&lt;FileItem&gt; list = upload.parseRequest(request);</span><br><span class="line">            <span class="comment">// 遍历： 得到每一个上传的数据</span></span><br><span class="line">            <span class="keyword">for</span> (FileItem item : list) &#123;</span><br><span class="line">                <span class="comment">// 判断类型（true：普通表单 || false：上传表单）</span></span><br><span class="line">                <span class="keyword">if</span>(item.isFormField())&#123;</span><br><span class="line">                    <span class="comment">//获取名称</span></span><br><span class="line">                    String name = item.getFieldName();</span><br><span class="line">                    <span class="comment">//获取值</span></span><br><span class="line">                    String value = item.getString();</span><br><span class="line">                    <span class="comment">//打印内容</span></span><br><span class="line">                    System.out.println(<span class="string">"name: "</span> + name + <span class="string">"\tvalue: "</span> + value);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">/*****上传表单*****/</span></span><br><span class="line">                    <span class="comment">//获取文件名称</span></span><br><span class="line">                    String name = item.getName();</span><br><span class="line">                    <span class="comment">// ----处理上传文件名重名问题----</span></span><br><span class="line">                    <span class="comment">//获取一个36位的uuid字符串</span></span><br><span class="line">                    String id = UUID.randomUUID().toString();</span><br><span class="line">                    <span class="comment">//拼接文件名</span></span><br><span class="line">                    name = id + <span class="string">"#"</span> + name;</span><br><span class="line">                    <span class="comment">//得到上传目录</span></span><br><span class="line">                    String basePath = getServletContext().getRealPath(<span class="string">"upload"</span>);</span><br><span class="line">                    System.out.println(<span class="string">"basePath: "</span> + basePath);</span><br><span class="line">                    <span class="comment">//创建要上传的文件对象</span></span><br><span class="line">                    File file = <span class="keyword">new</span> File(basePath, name);</span><br><span class="line">                    <span class="comment">//上传</span></span><br><span class="line">                    item.write(file);</span><br><span class="line">                    <span class="comment">// 删除组件运行时产生的临时文件</span></span><br><span class="line">                    item.delete();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"不是上传表单"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        uri = <span class="string">"/success.jsp"</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileUploadException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        uri = <span class="string">"/error/error.jsp"</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        uri = <span class="string">"/error/error.jsp"</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        request.getRequestDispatcher(uri).forward(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="三、文件列表"><a href="#三、文件列表" class="headerlink" title="三、文件列表"></a>三、文件列表</h2><ol>
+<li><p>html代码</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"80%"</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">cellpadding</span>=<span class="string">"5"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>序号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>文件名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.fileMap&#125;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">items</span>=<span class="string">"$&#123;requestScope.fileMap &#125;"</span> <span class="attr">var</span>=<span class="string">"en"</span> <span class="attr">varStatus</span>=<span class="string">"vs"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;vs.count &#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;en.value &#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 构建一个地址 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:url</span> <span class="attr">var</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"FileServlet"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">c:param</span> <span class="attr">name</span>=<span class="string">"method"</span> <span class="attr">value</span>=<span class="string">"down"</span>&gt;</span><span class="tag">&lt;/<span class="name">c:param</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">c:param</span> <span class="attr">name</span>=<span class="string">"fileName"</span> <span class="attr">value</span>=<span class="string">"$&#123;en.key &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">c:param</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">c:url</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 使用上面地址 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;url &#125;"</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">c:otherwise</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>对不起，没有你要找的数据<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">c:otherwise</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>java代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">downList</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 实现思路：先获取upload目录下所有文件的文件名，再保存；跳转到down.jsp列表展示</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//初始化map集合Map&lt;包含唯一标记的文件名, 简短文件名&gt;</span></span><br><span class="line">    Map&lt;String, String&gt; fileMap = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">    <span class="comment">//获取上传目录</span></span><br><span class="line">    String basePath = getServletContext().getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">    System.out.println(basePath);</span><br><span class="line">    <span class="comment">//目录</span></span><br><span class="line">    File file = <span class="keyword">new</span> File(basePath);</span><br><span class="line">    <span class="comment">//遍历目录获取文件名</span></span><br><span class="line">    String[] list = file.list();</span><br><span class="line">    <span class="comment">//遍历，封装</span></span><br><span class="line">    <span class="keyword">if</span> (list != <span class="keyword">null</span> &amp;&amp; list.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (String name : list) &#123;</span><br><span class="line">            System.out.println(name);</span><br><span class="line">            String shortName = name.substring(name.lastIndexOf(<span class="string">"#"</span>)+<span class="number">1</span>);</span><br><span class="line">            System.out.println(<span class="string">"shortName: "</span>  + shortName);</span><br><span class="line">            fileMap.put(name, shortName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//保存到request域</span></span><br><span class="line">    request.setAttribute(<span class="string">"fileMap"</span>, fileMap);</span><br><span class="line">    <span class="comment">//转发</span></span><br><span class="line">    request.getRequestDispatcher(<span class="string">"/downlist.jsp"</span>).forward(request, response);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>三、文件下载</p>
+<ol>
+<li><p>java代码</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">down</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 获取用户下载的文件名称(url地址后追加数据,get)</span></span><br><span class="line">    String fileName = request.getParameter(<span class="string">"fileName"</span>);</span><br><span class="line">    System.out.println(<span class="string">"未编码："</span> + fileName);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取文件目录路径</span></span><br><span class="line">    String basePath = getServletContext().getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">    <span class="comment">//获取文件流</span></span><br><span class="line">    InputStream is = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(basePath, fileName));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//截取字符串</span></span><br><span class="line">    String shortName = fileName.substring(fileName.lastIndexOf(<span class="string">"#"</span>)+<span class="number">1</span>);</span><br><span class="line">    System.out.println(<span class="string">"截取后未编码："</span> + shortName);</span><br><span class="line">    shortName = <span class="keyword">new</span> String(shortName.getBytes(),<span class="string">"ISO8859-1"</span>);</span><br><span class="line">    System.out.println(<span class="string">"截取后编码："</span> + shortName);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//设置浏览器编码</span></span><br><span class="line">    response.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">    <span class="comment">// 设置下载的响应头</span></span><br><span class="line">    response.addHeader(<span class="string">"content-disposition"</span>, <span class="string">"attachment;fileName="</span>+shortName);</span><br><span class="line">    <span class="comment">// 获取response字节流</span></span><br><span class="line">    OutputStream os = response.getOutputStream();</span><br><span class="line">    <span class="keyword">byte</span>[] by = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> ((len = is.read(by)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        os.write(by, <span class="number">0</span>, len);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//关闭</span></span><br><span class="line">    os.close();</span><br><span class="line">    is.close();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>张钦</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.sdwfqin.com/2016/05/29/JavaWeb文件上传下载，使用fileupload组件/" title="JavaWeb文件上传下载，使用fileupload组件">http://www.sdwfqin.com/2016/05/29/JavaWeb文件上传下载，使用fileupload组件/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/09/ubuntu安装JDK-SDK/" rel="next" title="ubuntu安装JDK, SDK">
+                <i class="fa fa-chevron-left"></i> ubuntu安装JDK, SDK
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/21/Fragment小结/" rel="prev" title="Fragment小结">
+                Fragment小结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="张钦">
+            
+              <p class="site-author-name" itemprop="name">张钦</p>
+              <p class="site-description motion-element" itemprop="description">一介码农，主业安卓，副业创收</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/sdwfqin" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://juejin.im/user/580b923a67f3560057b415ec" target="_blank" title="掘金" rel="external nofollow"><i class="fa fa-fw fa-bug"></i>掘金</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zhangqin96812" target="_blank" title="Weibo" rel="external nofollow"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sdwfqin@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.lichnote.me/" title="李超" target="_blank">李超</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.fkwebs.com/" title="方块网络" target="_blank">方块网络</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://monsterlin.com/" title="monsterlin" target="_blank">monsterlin</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引入jar包"><span class="nav-number">1.</span> <span class="nav-text">一、引入jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、文件上传"><span class="nav-number">2.</span> <span class="nav-text">二、文件上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、文件列表"><span class="nav-number">3.</span> <span class="nav-text">三、文件列表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"> &copy; 2016 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张钦</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
