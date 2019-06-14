@@ -98,7 +98,7 @@
 <meta name="keywords" content="Android,RxJava">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxJava应用：实现七牛云多图上传">
-<meta property="og:url" content="http://www.sdwfqin.com/2018/07/28/RxJava应用：实现七牛云多图上传/index.html">
+<meta property="og:url" content="https://sdwfqin.github.io/2018/07/28/RxJava应用：实现七牛云多图上传/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
 <meta property="og:description" content="一、引入 七牛云的官方SDK中只有单图上传。如果想要实现多图的上传可能会想到for循环，递归等解决方案.在这里我分享下我用RxJava+回调接口封装的七牛云多图上传工具类，也算是之前看了老多RxJava文章的一个实践吧。如有不妥之处，还请多多指教啦😁">
 <meta property="og:locale" content="zh-CN">
@@ -112,7 +112,7 @@
 
 
 
-  <link rel="canonical" href="http://www.sdwfqin.com/2018/07/28/RxJava应用：实现七牛云多图上传/">
+  <link rel="canonical" href="https://sdwfqin.github.io/2018/07/28/RxJava应用：实现七牛云多图上传/">
 
 
 
@@ -361,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.sdwfqin.com/2018/07/28/RxJava应用：实现七牛云多图上传/">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2018/07/28/RxJava应用：实现七牛云多图上传/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张钦">
@@ -512,7 +512,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">putImgs</span><span class="params">(List&lt;String&gt; images, QiNiuCallback qiNiuCallback)</span> </span>&#123;</span><br><span class="line">    String token = Auth.create(Constants.QINIU_AK, Constants.QINIU_SK).uploadToken(Constants.QINIU_SCOPE);</span><br><span class="line">    <span class="comment">// 七牛返回的文件名</span></span><br><span class="line">    ArrayList&lt;String&gt; resultImagePath = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    Observable</span><br><span class="line">            <span class="comment">// 依次发送list中的数据</span></span><br><span class="line">            .fromIterable(images)</span><br><span class="line">            <span class="comment">// 变换，在这里上传图片</span></span><br><span class="line">            <span class="comment">// 修改为concatMap确保图片顺序</span></span><br><span class="line">            .concatMap((Function&lt;String, ObservableSource&lt;String&gt;&gt;) path -&gt;</span><br><span class="line">                    Observable.create((ObservableOnSubscribe&lt;String&gt;) emitter -&gt; &#123;</span><br><span class="line">                        String key = UUID.randomUUID().toString() + <span class="string">"."</span> + path.split(<span class="string">"\\."</span>)[<span class="number">1</span>];</span><br><span class="line">                        ResponseInfo responseInfo = uploadManager.syncPut(path, key, token, <span class="keyword">null</span>);</span><br><span class="line">                        <span class="keyword">if</span> (responseInfo.isOK()) &#123;</span><br><span class="line">                            <span class="comment">// 上传成功，发送这张图片的文件名</span></span><br><span class="line">                            emitter.onNext(key);</span><br><span class="line">                            emitter.onComplete();</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="comment">// 上传失败，告辞</span></span><br><span class="line">                            emitter.onError(<span class="keyword">new</span> IOException(responseInfo.error));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;).subscribeOn(Schedulers.io())</span><br><span class="line">            )</span><br><span class="line">            <span class="comment">// 线程切换</span></span><br><span class="line">            .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">            .subscribe(response -&gt; &#123;</span><br><span class="line">                resultImagePath.add(response);</span><br><span class="line">                <span class="comment">// 如果全部完成，调用成功接口</span></span><br><span class="line">                <span class="keyword">if</span> (resultImagePath.size() == images.size()) &#123;</span><br><span class="line">                    qiNiuCallback.onSuccess(resultImagePath);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, throwable -&gt; &#123;</span><br><span class="line">                LogUtils.e(throwable.getMessage());</span><br><span class="line">                qiNiuCallback.onError(throwable.getMessage());</span><br><span class="line">            &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="七、相关链接"><a href="#七、相关链接" class="headerlink" title="七、相关链接"></a>七、相关链接</h1><p>七牛云文档：<a href="https://developer.qiniu.com/kodo/sdk/1236/android" target="_blank" rel="noopener">https://developer.qiniu.com/kodo/sdk/1236/android</a></p>
-<p>RxJava的简单使用：<a href="https://www.sdwfqin.com/2016/12/25/rxjava%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">https://www.sdwfqin.com/2016/12/25/rxjava%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a></p>
+<p>RxJava的简单使用：<a href="https://www.sdwfqin.com/2016/12/25/rxjava%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">https://www.sdwfqin.com/2016/12/25/rxjava%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a></p>
 
       
     </div>
@@ -547,7 +547,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://www.sdwfqin.com/2018/07/28/RxJava应用：实现七牛云多图上传/" title="RxJava应用：实现七牛云多图上传">http://www.sdwfqin.com/2018/07/28/RxJava应用：实现七牛云多图上传/</a>
+    <a href="https://sdwfqin.github.io/2018/07/28/RxJava应用：实现七牛云多图上传/" title="RxJava应用：实现七牛云多图上传">https://sdwfqin.github.io/2018/07/28/RxJava应用：实现七牛云多图上传/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>

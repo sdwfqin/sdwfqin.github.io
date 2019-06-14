@@ -98,7 +98,7 @@
 <meta name="keywords" content="Android,View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PopupWindow弹窗">
-<meta property="og:url" content="http://www.sdwfqin.com/2016/08/19/PopupWindow弹窗/index.html">
+<meta property="og:url" content="https://sdwfqin.github.io/2016/08/19/PopupWindow弹窗/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
 <meta property="og:description" content="一，简介PopupWindow这个类用来实现一个弹出框，可以使用任意布局的View作为其内容，这个弹出框是悬浮在当前activity之上的。">
 <meta property="og:locale" content="zh-CN">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://www.sdwfqin.com/2016/08/19/PopupWindow弹窗/">
+  <link rel="canonical" href="https://sdwfqin.github.io/2016/08/19/PopupWindow弹窗/">
 
 
 
@@ -363,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.sdwfqin.com/2016/08/19/PopupWindow弹窗/">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2016/08/19/PopupWindow弹窗/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张钦">
@@ -519,7 +519,7 @@
 <h1 id="三、简单实现跟随手指点击"><a href="#三、简单实现跟随手指点击" class="headerlink" title="三、简单实现跟随手指点击"></a>三、简单实现跟随手指点击</h1><ol>
 <li><p>思路：通过GestureDetector对象识别用户长按事件，获取点击位置相对于屏幕的坐标，使用<code>showAtLocation(rootview, Gravity.NO_GRAVITY, x, y);</code>显示到屏幕上</p>
 </li>
-<li><p>关于GestureDetector对象可以看我的另一篇文章<a href="http://www.sdwfqin.com/2017/04/26/View%E4%BD%8D%E7%BD%AE%E5%8F%8A%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/">View位置及触摸事件</a></p>
+<li><p>关于GestureDetector对象可以看我的另一篇文章<a href="http://www.sdwfqin.com/2017/04/26/View%E4%BD%8D%E7%BD%AE%E5%8F%8A%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/" target="_blank" rel="noopener">View位置及触摸事件</a></p>
 </li>
 <li><p>主要代码（详细内容请查看源码）</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">    Log.e(TAG, <span class="string">"onShowPress: "</span> + <span class="string">"长按"</span>);</span><br><span class="line">    <span class="comment">// 获取点击位置相对于屏幕的坐标</span></span><br><span class="line">    <span class="keyword">int</span> x = (<span class="keyword">int</span>) e.getRawX();</span><br><span class="line">    <span class="keyword">int</span> y = (<span class="keyword">int</span>) e.getRawY();</span><br><span class="line">    x -= Utils.dp2px(LongShowPopupActivity.<span class="keyword">this</span>, <span class="number">55</span>);</span><br><span class="line">    <span class="keyword">if</span> (mPopWindow != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mPopWindow.isShowing()) &#123;</span><br><span class="line">            mPopWindow.dismiss();</span><br><span class="line">            showPopupWindow(x, y);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            showPopupWindow(x, y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        showPopupWindow(x, y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDown</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 这里要设置为true，响应事件，不然点一下屏幕也会显示长按</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -560,7 +560,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://www.sdwfqin.com/2016/08/19/PopupWindow弹窗/" title="PopupWindow弹窗">http://www.sdwfqin.com/2016/08/19/PopupWindow弹窗/</a>
+    <a href="https://sdwfqin.github.io/2016/08/19/PopupWindow弹窗/" title="PopupWindow弹窗">https://sdwfqin.github.io/2016/08/19/PopupWindow弹窗/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
