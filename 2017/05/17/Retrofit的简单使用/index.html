@@ -1,133 +1,81 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png?v=7.0.1">
-
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="一、简述 大家应该都听过了MVP+RxJava+Retrofit+Dagger2+巴拉巴拉巴拉，这篇文章主要介绍其中的Retrofit以及RxJava2与Retrofit的简单结合。 Retrofit是Square公司开发的一款针对Android网络请求的框架,Retrofit2底层基于OkHttp实现的,OkHttp现在已经得到Google官方认可。 其实写不写这个我是纠结了好久的，Retrof">
 <meta name="keywords" content="Android,Http">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Retrofit的简单使用">
-<meta property="og:url" content="https://sdwfqin.github.io/2017/05/17/Retrofit的简单使用/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;sdwfqin.github.io&#x2F;2017&#x2F;05&#x2F;17&#x2F;Retrofit%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
 <meta property="og:description" content="一、简述 大家应该都听过了MVP+RxJava+Retrofit+Dagger2+巴拉巴拉巴拉，这篇文章主要介绍其中的Retrofit以及RxJava2与Retrofit的简单结合。 Retrofit是Square公司开发的一款针对Android网络请求的框架,Retrofit2底层基于OkHttp实现的,OkHttp现在已经得到Google官方认可。 其实写不写这个我是纠结了好久的，Retrof">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-02-27T02:19:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Retrofit的简单使用">
-<meta name="twitter:description" content="一、简述 大家应该都听过了MVP+RxJava+Retrofit+Dagger2+巴拉巴拉巴拉，这篇文章主要介绍其中的Retrofit以及RxJava2与Retrofit的简单结合。 Retrofit是Square公司开发的一款针对Android网络请求的框架,Retrofit2底层基于OkHttp实现的,OkHttp现在已经得到Google官方认可。 其实写不写这个我是纠结了好久的，Retrof">
+
+<link rel="canonical" href="https://sdwfqin.github.io/2017/05/17/Retrofit%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
 
 
-
-
-
-
-  <link rel="canonical" href="https://sdwfqin.github.io/2017/05/17/Retrofit的简单使用/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>Retrofit的简单使用 | Zhang Qin's blog</title>
   
-
-
-
-
 
 
   <script>
@@ -143,12 +91,8 @@
 
 
 
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -157,9 +101,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -173,304 +116,153 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Zhang Qin's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-      
         <p class="site-subtitle">Hello Everyone</p>
-      
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
-
 
 
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-about">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
-
-  
 </nav>
-
-
-
-  
-
-
-
 </div>
     </header>
 
     
-  
-  
-  
-  
 
-  
-
-  <a href="https://github.com/sdwfqin" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+  <a href="https://github.com/sdwfqin" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 
-
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
+
+          <div class="content">
             
 
-          
-          <div id="content" class="content">
-            
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/05/17/Retrofit%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/05/17/Retrofit的简单使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
       <meta itemprop="description" content="一介码农，专注于Android CRUD">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Zhang Qin's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Retrofit的简单使用
-
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          Retrofit的简单使用
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-05-17 19:00:00" itemprop="dateCreated datePublished" datetime="2017-05-17T19:00:00+08:00">2017-05-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
             </span>
-          
 
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><ol>
@@ -492,7 +284,7 @@
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiStores</span> </span>&#123;</span><br><span class="line"><span class="comment">//baseUrl</span></span><br><span class="line">String API_SERVER_URL = <span class="string">"http://www.weather.com.cn/"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Path可以用于任何请求，拼接url地址</span></span><br><span class="line"><span class="comment">// @GET表示get请求</span></span><br><span class="line"><span class="comment">// 返回一个WeatherModel对象，这是我们创建的JavaBean，retrofit可以直接解析json到这里</span></span><br><span class="line"><span class="meta">@GET</span>(<span class="string">"adat/sk/&#123;cityId&#125;.html"</span>)</span><br><span class="line"><span class="function">Call&lt;WeatherModel&gt; <span class="title">loadDataByJson</span><span class="params">(@Path(<span class="string">"cityId"</span>)</span> String cityIdJson)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回字符串</span></span><br><span class="line"><span class="meta">@GET</span>(<span class="string">"adat/sk/&#123;cityId&#125;.html"</span>)</span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">loadDataByString</span><span class="params">(@Path(<span class="string">"cityId"</span>)</span> String cityIdString)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接口调用，生成接口的实现类的实例</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Retrofit mRetrofit;</span><br><span class="line">   <span class="keyword">private</span> ApiStores mApiStores;</span><br><span class="line">--- --- --- --- --- --- ---</span><br><span class="line">   mRetrofit = <span class="keyword">new</span> Retrofit.Builder() <span class="comment">//01:获取Retrofit对象</span></span><br><span class="line">           .baseUrl(ApiStores.API_SERVER_URL) <span class="comment">//02采用链式结构绑定Base url</span></span><br><span class="line">           <span class="comment">// 注意：字符创解析器要放在Gson解析器前面，不然无法解析字符串</span></span><br><span class="line">           <span class="comment">//使用工厂模式创建字符串解析器</span></span><br><span class="line">           .addConverterFactory(ScalarsConverterFactory.create())</span><br><span class="line">           <span class="comment">//使用工厂模式创建Gson的解析器</span></span><br><span class="line">           .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">           .build();</span><br><span class="line"><span class="comment">//04获取API接口的实现类的实例对象</span></span><br><span class="line">mApiStores = mRetrofit.create(ApiStores.class);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Retrofit mRetrofit;</span><br><span class="line">   <span class="keyword">private</span> ApiStores mApiStores;</span><br><span class="line">--- --- --- --- --- --- ---</span><br><span class="line">   mRetrofit = <span class="keyword">new</span> Retrofit.Builder() <span class="comment">//01:获取Retrofit对象</span></span><br><span class="line">           .baseUrl(ApiStores.API_SERVER_URL) <span class="comment">//02采用链式结构绑定Base url</span></span><br><span class="line">           <span class="comment">// 注意：字符创解析器要放在Gson解析器前面，不然无法解析字符串</span></span><br><span class="line">           <span class="comment">//使用工厂模式创建字符串解析器</span></span><br><span class="line">           .addConverterFactory(ScalarsConverterFactory.create())</span><br><span class="line">           <span class="comment">//使用工厂模式创建Gson的解析器</span></span><br><span class="line">           .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">           .build();</span><br><span class="line"><span class="comment">//04获取API接口的实现类的实例对象</span></span><br><span class="line">mApiStores = mRetrofit.create(ApiStores<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>调用接口中的业务方法</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;WeatherModel&gt; mModelCall = mApiStores.loadDataByJson(<span class="string">"101190201"</span>);</span><br></pre></td></tr></table></figure>
@@ -502,6 +294,7 @@
 </li>
 <li><p>返回字符串(String)</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;String&gt; mModelCall2 = mApiStores.loadDataByString(<span class="string">"101190201"</span>);</span><br><span class="line">mModelCall2.enqueue(<span class="keyword">new</span> Callback&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;String&gt; call, Response&lt;String&gt; response)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (response.body() == <span class="keyword">null</span>) &#123;</span><br><span class="line">            setText(<span class="string">"null"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            setText(response.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;String&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">"onFailure: "</span>, t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h1 id="三、get请求"><a href="#三、get请求" class="headerlink" title="三、get请求"></a>三、get请求</h1><ol>
@@ -515,24 +308,27 @@
 </li>
 <li><p>Query集合</p>
 <p> 假如你需要添加相同Key值，但是value却有多个的情况，一种方式是添加多个@query参数，还有一种简便的方式是将所有的value放置在列表中，然后在同一个@Query下完成添加，实例代码如下</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET</span>(<span class="string">"GetServlet"</span>)</span><br><span class="line"><span class="function">Call&lt;BookSearchResponse&gt; <span class="title">getSearchBooks</span><span class="params">(@Query(<span class="string">"value"</span>)</span> List&lt;String&gt; name)</span>;</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET</span>(<span class="string">"GetServlet"</span>)</span><br><span class="line"><span class="function">Call&lt;BookSearchResponse&gt; <span class="title">getSearchBooks</span><span class="params">(@Query(<span class="string">"value"</span>)</span> List&lt;String&gt; name)</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>异步请求</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;RequestModel&gt; call = searchApi.getData(<span class="string">"码农Mrz"</span>, <span class="string">"get请求"</span>);</span><br><span class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;RequestModel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;RequestModel&gt; call, Response&lt;RequestModel&gt; response)</span> </span>&#123;</span><br><span class="line">        setText(<span class="string">"异步请求结果: "</span> + response.body().toString());</span><br><span class="line">        Log.e(TAG, <span class="string">"请求头: "</span> + response.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;RequestModel&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">"onFailure: "</span>, t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>同步请求</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;RequestModel&gt; call = searchApi.getData(<span class="string">"码农Mrz"</span>, <span class="string">"get同步请求"</span>);</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h1 id="四、post请求"><a href="#四、post请求" class="headerlink" title="四、post请求"></a>四、post请求</h1><ol>
 <li><p>Field</p>
 <p> Post请求需要把请求参数放置在请求体中，而非拼接在url后面</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Post请求需要把请求参数放置在请求体中，而非拼接在url后面</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * FormUrlEncode将会自动将请求参数的类型调整为application/x-www-form-urlencoded</span></span><br><span class="line"><span class="comment"> * FormUrlEncode不能用于get请求</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * field注解将每一个请求参数都存放至请求体中，还可以添加encoded参数，该参数为boolean型</span></span><br><span class="line"><span class="comment"> * 例如：<span class="doctag">@Field</span>(value = "book", encoded = true) String book</span></span><br><span class="line"><span class="comment"> * encoded参数为true的话，key-value-pair将会被编码，即将中文和特殊字符进行编码转换</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FormUrlEncoded</span> <span class="comment">// @FormUrlEncoded的默认编码方式为UTF-8</span></span><br><span class="line"><span class="meta">@POST</span>(<span class="string">"PostServlet"</span>)</span><br><span class="line"><span class="function">Observable&lt;RequestModel&gt; <span class="title">PostData</span><span class="params">(@Field(<span class="string">"name"</span>)</span> String name,</span></span><br><span class="line"><span class="function">                                    @<span class="title">Field</span><span class="params">(<span class="string">"value"</span>)</span> String value)</span>;</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ol>
+<ol start="2">
 <li><p>FieldMap</p>
 <p> 类似于QueryMap，传递Map</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@POST</span>(<span class="string">"PostServlet"</span>)</span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">PostData</span><span class="params">(@FieldMap Map&lt;String, String&gt; fields)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@POST</span>(<span class="string">"PostServlet"</span>)</span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">PostData</span><span class="params">(@FieldMap Map&lt;String, String&gt; fields)</span></span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>@Body如果Post请求参数有多个，可以封装到一个类中</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@POST</span>(<span class="string">"book/reviews"</span>)</span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">PostData</span><span class="params">(@Body Reviews reviews)</span></span>;</span><br><span class="line">------------------------------------------</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Reviews</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String book;</span><br><span class="line">    <span class="keyword">public</span> String title;</span><br><span class="line">    <span class="keyword">public</span> String content;</span><br><span class="line">    <span class="keyword">public</span> String rating;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -544,401 +340,199 @@
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.addCallAdapterFactory(RxJava2CallAdapterFactory.create())</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建实例</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Retrofit mRetrofit;</span><br><span class="line"><span class="keyword">private</span> RequestPostApi searchApi;</span><br><span class="line">--------------------------------</span><br><span class="line">mRetrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">		.baseUrl(<span class="string">"http://test.sdwfqin.com/"</span>)</span><br><span class="line">		.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">		<span class="comment">// RxJava2支持</span></span><br><span class="line">		.addCallAdapterFactory(RxJava2CallAdapterFactory.create())</span><br><span class="line">		.build();</span><br><span class="line">searchApi = mRetrofit.create(RequestPostApi.class);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Retrofit mRetrofit;</span><br><span class="line"><span class="keyword">private</span> RequestPostApi searchApi;</span><br><span class="line">--------------------------------</span><br><span class="line">mRetrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">		.baseUrl(<span class="string">"http://test.sdwfqin.com/"</span>)</span><br><span class="line">		.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">		<span class="comment">// RxJava2支持</span></span><br><span class="line">		.addCallAdapterFactory(RxJava2CallAdapterFactory.create())</span><br><span class="line">		.build();</span><br><span class="line">searchApi = mRetrofit.create(RequestPostApi<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Observable请求</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用请求方法，并得到Observable实例</span></span><br><span class="line">Observable&lt;RequestModel&gt; observable = searchApi.PostData(<span class="string">"码农Mrz"</span>, <span class="string">"www.sdwfqin.com"</span>);</span><br><span class="line">observable.subscribeOn(Schedulers.io()) <span class="comment">//在io线程进行网络请求</span></span><br><span class="line">        <span class="comment">// 在主线程处理返回的数据</span></span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Observer&lt;RequestModel&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(@NonNull Disposable d)</span> </span>&#123;</span><br><span class="line">                Log.e(TAG, <span class="string">"onSubscribe: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(@NonNull RequestModel postModel)</span> </span>&#123;</span><br><span class="line">                Log.e(TAG, <span class="string">"onNext: "</span> + postModel.toString());</span><br><span class="line">                setText(postModel.toString());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.e(TAG, <span class="string">"onError: "</span>, e);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.e(TAG, <span class="string">"onComplete: "</span> + <span class="string">"所有事件完成"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h1 id="六、源码地址"><a href="#六、源码地址" class="headerlink" title="六、源码地址"></a>六、源码地址</h1><p>例子源码：<a href="https://github.com/sdwfqin/AndroidSamples" target="_blank" rel="noopener">https://github.com/sdwfqin/AndroidSamples</a></p>
 
-      
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-      <div>
         
 
-
-
-
-  
-
-
-
+<div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>张钦</li>
+    <strong>本文作者： </strong>张钦
+  </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    
-    <a href="https://sdwfqin.github.io/2017/05/17/Retrofit的简单使用/" title="Retrofit的简单使用">https://sdwfqin.github.io/2017/05/17/Retrofit的简单使用/</a>
+    <a href="https://sdwfqin.github.io/2017/05/17/Retrofit%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" title="Retrofit的简单使用">https://sdwfqin.github.io/2017/05/17/Retrofit%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-            <a href="/tags/Http/" rel="tag"># Http</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/10/Android自定义View/" rel="next" title="Android自定义View">
-                <i class="fa fa-chevron-left"></i> Android自定义View
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/24/我所理解的Dagger2/" rel="prev" title="我所理解的Dagger2">
-                我所理解的Dagger2 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="张钦">
-            
-              <p class="site-author-name" itemprop="name">张钦</p>
-              <p class="site-description motion-element" itemprop="description">一介码农，专注于Android CRUD</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">36</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/sdwfqin" title="GitHub &rarr; https://github.com/sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://juejin.im/user/580b923a67f3560057b415ec" title="掘金 &rarr; https://juejin.im/user/580b923a67f3560057b415ec" rel="noopener" target="_blank"><i class="fa fa-fw fa-bug"></i>掘金</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/sdwfqin" title="Twitter &rarr; https://twitter.com/sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:sdwfqin@gmail.com" title="E-Mail &rarr; mailto:sdwfqin@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            </div>
-          
-
-          
-             <div class="cc-license motion-element" itemprop="license">
-              
-              
-                
-              
-              
-              
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-             </div>
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.lichnote.me/" title="https://www.lichnote.me/" rel="noopener" target="_blank">李超</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.fkwebs.com/" title="http://www.fkwebs.com/" rel="noopener" target="_blank">方块网络</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://monsterlin.com/" title="https://monsterlin.com/" rel="noopener" target="_blank">monsterlin</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、简述"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、入门例子"><span class="nav-number">2.</span> <span class="nav-text">二、入门例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、get请求"><span class="nav-number">3.</span> <span class="nav-text">三、get请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、post请求"><span class="nav-number">4.</span> <span class="nav-text">四、post请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、rxjava-retrofit"><span class="nav-number">5.</span> <span class="nav-text">五、rxjava+retrofit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、源码地址"><span class="nav-number">6.</span> <span class="nav-text">六、源码地址</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-  
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">张钦</span>
-
-  
-
-  
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
-
-
-
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Http/" rel="tag"># Http</a>
+          </div>
 
         
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/05/10/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="next" title="Android自定义View">
+                  <i class="fa fa-chevron-left"></i> Android自定义View
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/05/24/%E6%88%91%E6%89%80%E7%90%86%E8%A7%A3%E7%9A%84Dagger2/" rel="prev" title="我所理解的Dagger2">
+                  我所理解的Dagger2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、简述"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、入门例子"><span class="nav-number">2.</span> <span class="nav-text">二、入门例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、get请求"><span class="nav-number">3.</span> <span class="nav-text">三、get请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、post请求"><span class="nav-number">4.</span> <span class="nav-text">四、post请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、rxjava-retrofit"><span class="nav-number">5.</span> <span class="nav-text">五、rxjava+retrofit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、源码地址"><span class="nav-number">6.</span> <span class="nav-text">六、源码地址</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="张钦"
+    src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">张钦</p>
+  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sdwfqin" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/580b923a67f3560057b415ec" title="掘金 &amp;rarr; https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;580b923a67f3560057b415ec" rel="noopener" target="_blank"><i class="fa fa-fw fa-bug"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/sdwfqin" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:sdwfqin@gmail.com" title="E-Mail &amp;rarr; mailto:sdwfqin@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张钦</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">146k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:13</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
 
 
 
@@ -950,128 +544,34 @@
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
-
-
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
 
 
 
   
 
 
-  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
-
-
-  
-  
-
-
-  
-
-
-  
 
 
 
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
-
-  
 
   
 
