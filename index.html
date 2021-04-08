@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一介码农，专注于Android CRUD">
+  <meta name="description" content="IT民工">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhang Qin&#39;s blog">
 <meta property="og:url" content="https://sdwfqin.github.io/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
-<meta property="og:description" content="一介码农，专注于Android CRUD">
+<meta property="og:description" content="IT民工">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="张钦">
 <meta name="twitter:card" content="summary">
@@ -175,12 +175,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="IT民工">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/" class="post-title-link" itemprop="url">Flutter暗黑模式适配</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-03 15:26:00 / 修改时间：16:56:13" itemprop="dateCreated datePublished" datetime="2021-04-03T15:26:00+08:00">2021-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>Flutter的深色模式以及跟随系统设置比较简单，我感觉需要注意的是开发过程中尽量使用Theme中的颜色与样式，开发过程中遇到的比较大的坑就是<code>provider</code>的一些问题，可能是因为我用的版本新一些，网上找了很多文章，总会遇到一些问题。本文的深色模式适配是通过修改<code>themeMode</code>来实现的，供诸位有缘人参考。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/76ce6d244039bb7fb74a62e43e1e9ab5.png" alt="image.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2020/08/27/%E5%9F%BA%E4%BA%8EHilt+Retrofit+%E5%8D%8F%E7%A8%8B%E7%9A%84MVVM%E6%A8%A1%E5%BC%8F%E6%8E%A2%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -218,7 +308,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
+              <span>5.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -244,7 +334,7 @@
 <li>没有在生产项目中使用过～</li>
 <li>主要说了用法，基础知识很少讲，不熟悉的可以看下最下面的参考文章，讲的比较详细。</li>
 </ol>
-<p><img src="https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png?hl=zh_cn" alt=""></p>
+<p><img src="https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png?hl=zh_cn"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/27/%E5%9F%BA%E4%BA%8EHilt+Retrofit+%E5%8D%8F%E7%A8%8B%E7%9A%84MVVM%E6%A8%A1%E5%BC%8F%E6%8E%A2%E7%B4%A2/#more" rel="contents">
@@ -276,7 +366,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -320,14 +410,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -376,7 +466,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -465,7 +555,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -503,14 +593,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>19k</span>
+              <span>20k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>17 分钟</span>
+              <span>18 分钟</span>
             </span>
 
         </div>
@@ -560,7 +650,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -626,7 +716,7 @@
           <h1 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h1><blockquote>
 <p>9102年了，终于准备用mvp来重构一下了</p>
 </blockquote>
-<p>之前写过Mvc模式下的<a href="https://www.sdwfqin.com/2018/02/26/retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" target="_blank" rel="noopener">Retrofit统一异常处理</a>，这次用MVP重构过程中发现诸多不足之处，便重新进行修缮，使其在我看来更加优雅emmmmmm，文中不足之处，还望诸位同仁多多指点。</p>
+<p>之前写过Mvc模式下的<a target="_blank" rel="noopener" href="https://www.sdwfqin.com/2018/02/26/retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">Retrofit统一异常处理</a>，这次用MVP重构过程中发现诸多不足之处，便重新进行修缮，使其在我看来更加优雅emmmmmm，文中不足之处，还望诸位同仁多多指点。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/03/25/%E5%AE%89%E5%8D%93MVP%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84Rxjava+Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86/#more" rel="contents">
@@ -658,7 +748,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -755,7 +845,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -799,7 +889,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>6.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -824,7 +914,7 @@
 <li>动画主要使用二阶贝塞尔曲线与属性动画</li>
 <li>消息传递使用EventBus普通事件</li>
 </ol>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/shopping.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/shopping.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/08/07/%E4%BD%BF%E7%94%A8%E4%BA%8C%E9%98%B6%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%AE%9E%E7%8E%B0%E6%B7%BB%E5%8A%A0%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%8A%A8%E7%94%BB/#more" rel="contents">
@@ -856,7 +946,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -900,7 +990,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -953,7 +1043,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1016,105 +1106,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一、杂谈"><a href="#一、杂谈" class="headerlink" title="一、杂谈"></a>一、杂谈</h1><p>微信分享图片的迷之bug，前一阵子接盘一个Hybrid App，分享要用原生的分享，搞了一阵子把微信分享搞上，测试又反馈了一个谜一样的Bug，我这边看Log打印了<code>checkArgs fail, thumbData is invalid</code>，google一番都说是图片不能超过32kb，在分享里面看到如下判断<code>this.thumbData.length &gt; &#39;耀&#39;</code>，一时间没有反应过来。。。可是怎么压缩好哇，我参照官方Demo和<a href="https://github.com/Blankj/AndroidUtilCode" target="_blank" rel="noopener">AndroidUtilCode</a>的按质量压缩方法，找出了下面的解决方案，供大家参考。</p>
+          <h1 id="一、杂谈"><a href="#一、杂谈" class="headerlink" title="一、杂谈"></a>一、杂谈</h1><p>微信分享图片的迷之bug，前一阵子接盘一个Hybrid App，分享要用原生的分享，搞了一阵子把微信分享搞上，测试又反馈了一个谜一样的Bug，我这边看Log打印了<code>checkArgs fail, thumbData is invalid</code>，google一番都说是图片不能超过32kb，在分享里面看到如下判断<code>this.thumbData.length &gt; &#39;耀&#39;</code>，一时间没有反应过来。。。可是怎么压缩好哇，我参照官方Demo和<a target="_blank" rel="noopener" href="https://github.com/Blankj/AndroidUtilCode">AndroidUtilCode</a>的按质量压缩方法，找出了下面的解决方案，供大家参考。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/03/09/%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E5%9B%BE%E7%89%87%E6%8C%89%E8%B4%A8%E9%87%8F%E5%8E%8B%E7%BC%A9%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang Qin's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Retrofit统一异常处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-02-26 17:15:41" itemprop="dateCreated datePublished" datetime="2018-02-26T17:15:41+08:00">2018-02-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2018-02-27 10:31:08" itemprop="dateModified" datetime="2018-02-27T10:31:08+08:00">2018-02-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、杂谈"><a href="#一、杂谈" class="headerlink" title="一、杂谈"></a>一、杂谈</h1><p>前一阵子博客备案因为名字问题被驳回了两次也是够了，现在在公司里一直写业务代码，这让本来就不会的算法的我算法水平更加烂，最近在跟着优酷上的一个小姐姐学魔方，智商跟不太上了啊哈哈哈哈哈。OK，步入正题，名字叫Retrofit异常处理，可是内容应该主要是针对网络的统一异常处理，我之前的异常处理都是在BaseActivity或者是BaseFragment中去添加一个方法，然后在网络请求有问题时去调用这个方法，但是后来我把我用频率较多的代码（包括Base）打包发布了一个仓库<a href="https://github.com/sdwfqin/AndroidQuick" target="_blank" rel="noopener">AndroidQuick</a>，这样的话我的异常处理就没法在Base层里面处理了，而且本身的处理方式就有很多不完善的地方。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1198,27 +1193,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1262,7 +1257,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1271,12 +1266,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

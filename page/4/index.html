@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一介码农，专注于Android CRUD">
+  <meta name="description" content="IT民工">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhang Qin&#39;s blog">
 <meta property="og:url" content="https://sdwfqin.github.io/page/4/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
-<meta property="og:description" content="一介码农，专注于Android CRUD">
+<meta property="og:description" content="IT民工">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="张钦">
 <meta name="twitter:card" content="summary">
@@ -175,12 +175,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="IT民工">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">Picasso图片下载与缓存</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-28 15:52:23" itemprop="dateCreated datePublished" datetime="2016-07-28T15:52:23+08:00">2016-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一，简介"><a href="#一，简介" class="headerlink" title="一，简介"></a>一，简介</h1><ol>
+<li><p>picasso是Square公司开源的一个Android图形缓存库，地址<a target="_blank" rel="noopener" href="https://github.com/square/picasso">https://github.com/square/picasso</a> ，可以实现图片下载和缓存功能。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(<span class="string">&quot;http://i.imgur.com/DvpvklR.png&quot;</span>).into(imageView);</span><br></pre></td></tr></table></figure></li>
+<li><p>特性</p>
+<ul>
+<li>在adapter中回收和取消当前的下载；</li>
+<li>使用最少的内存完成复杂的图形转换操作；</li>
+<li>自动的内存和硬盘缓存；</li>
+<li>图形转换操作，如变换大小，旋转等，提供了接口来让用户可以自定义转换操作；</li>
+<li>加载载网络或本地资源；</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://square.github.io/picasso/static/sample.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2016/07/27/AsyncTask/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -277,7 +385,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -321,7 +429,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>796</span>
+              <span>886</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -374,7 +482,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -418,7 +526,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -441,7 +549,7 @@
 <p>RecyclerView是ViewGroup的子类，每一个列表项都作为一个View子对象显示的。<br>RecyclerView是Android L版本中新添加的一个用来取代ListView的SDK。<br>RecyclerView自身不会创建视图，它创建的是ViewHolder，而ViewHolder引用这一个一个itemView。<br>TODO：准备修缮（2017/9/7 18:24:43 ）</p>
 </blockquote>
 <h1 id="二、依赖包"><a href="#二、依赖包" class="headerlink" title="二、依赖包"></a>二、依赖包</h1><p>因item使用<a href="/2016/07/04/CardView/">cardview</a>展现，如不了解可点击查阅<a href="/2016/07/04/CardView/">cardview</a>用法</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile 'com.android.support:recyclerview-v7:24.0.0'</span><br><span class="line">compile 'com.android.support:cardview-v7:24.0.0'</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &#x27;com.android.support:recyclerview-v7:24.0.0&#x27;</span><br><span class="line">compile &#x27;com.android.support:cardview-v7:24.0.0&#x27;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/07/07/RecyclerView/#more" rel="contents">
@@ -473,7 +581,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -517,7 +625,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -537,9 +645,9 @@
 
       
           <blockquote>
-<p>CardView继承至FrameLayout类，可以在一个卡片布局中一致性的显示内容，卡片可以包含圆角和阴影。CardView是一个Layout，可以布局其他View。<br>参考链接：<a href="http://seniorzhai.github.io/2015/01/06/CardView%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">http://seniorzhai.github.io/2015/01/06/CardView%E7%9A%84%E4%BD%BF%E7%94%A8/</a></p>
+<p>CardView继承至FrameLayout类，可以在一个卡片布局中一致性的显示内容，卡片可以包含圆角和阴影。CardView是一个Layout，可以布局其他View。<br>参考链接：<a target="_blank" rel="noopener" href="http://seniorzhai.github.io/2015/01/06/CardView%E7%9A%84%E4%BD%BF%E7%94%A8/">http://seniorzhai.github.io/2015/01/06/CardView%E7%9A%84%E4%BD%BF%E7%94%A8/</a></p>
 </blockquote>
-<h1 id="一、需要配置的东西"><a href="#一、需要配置的东西" class="headerlink" title="一、需要配置的东西"></a>一、需要配置的东西</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile 'com.android.support:cardview-v7:24.0.0'</span><br><span class="line">xmlns:card_view="http://schemas.android.com/apk/res-auto"</span><br></pre></td></tr></table></figure>
+<h1 id="一、需要配置的东西"><a href="#一、需要配置的东西" class="headerlink" title="一、需要配置的东西"></a>一、需要配置的东西</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &#x27;com.android.support:cardview-v7:24.0.0&#x27;</span><br><span class="line">xmlns:card_view=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/07/04/CardView/#more" rel="contents">
@@ -571,7 +679,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -615,7 +723,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -637,7 +745,7 @@
           <blockquote>
 <p>先拖张图压压惊，没错，就是官方的介绍图片</p>
 </blockquote>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/07/03/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/#more" rel="contents">
@@ -669,7 +777,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -768,7 +876,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -865,7 +973,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -909,14 +1017,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.8k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -962,7 +1070,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1027,8 +1135,7 @@
       
           <ol>
 <li><p>解压文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf xxx.tar.gz</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf xxx.tar.gz </span><br></pre></td></tr></table></figure></li>
 <li><p>建立目录</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /usr/lib/jvm</span><br></pre></td></tr></table></figure>
           <!--noindex-->
@@ -1117,27 +1224,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1181,7 +1288,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1190,12 +1297,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -187,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -230,7 +230,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -249,13 +249,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/SpannableString20170427153509.png" alt=""></p>
+        <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/SpannableString20170427153509.png"></p>
 <ul>
 <li>在Android中可以通过SpannableString或SpannableStringBuilder给存储的字符串添加样式，实现简单的富文本效果。</li>
 <li>SpannableString：这是一个文本的类，其内容是不可变的，但可以附加和分离标记对象。</li>
 <li>SpannableStringBuilder：这是文本的类，其内容和标记都可以更改。</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 <h1 id="二、SpannableString"><a href="#二、SpannableString" class="headerlink" title="二、SpannableString"></a>二、SpannableString</h1><h2 id="1-设置样式："><a href="#1-设置样式：" class="headerlink" title="1.设置样式："></a>1.设置样式：</h2><ol>
 <li><code>setSpan(Object what, int start, int end, int flags)</code></li>
 <li><code>what</code>表示设置的样式，<code>start</code>表示需要设置格式的子字符串的起始下标，<code>end</code>表示终了下标，<code>flag</code>表示子字符串是否包含开始或结束端点</li>
@@ -280,15 +280,15 @@
 <li><code>ClickableSpan</code>：为文本设置点击事件</li>
 <li><code>URLSpan</code>：为文本设置超链接</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">SpannableString spannableString = <span class="keyword">new</span> SpannableString(<span class="string">"前景色背景色相对大小删除线下划线"</span> +</span><br><span class="line">        <span class="string">"上标小上标下标粗体斜体显示图片点击超链接"</span>);</span><br><span class="line"></span><br><span class="line">ForegroundColorSpan foregroundColorSpan = <span class="keyword">new</span> ForegroundColorSpan(Color.parseColor(<span class="string">"#0099EE"</span>));</span><br><span class="line">BackgroundColorSpan backgroundColorSpan = <span class="keyword">new</span> BackgroundColorSpan(Color.parseColor(<span class="string">"#AC00FF30"</span>));</span><br><span class="line">RelativeSizeSpan relativeSizeSpan = <span class="keyword">new</span> RelativeSizeSpan(<span class="number">2f</span>);</span><br><span class="line">StrikethroughSpan strikethroughSpan = <span class="keyword">new</span> StrikethroughSpan();</span><br><span class="line">UnderlineSpan underlineSpan = <span class="keyword">new</span> UnderlineSpan();</span><br><span class="line">SuperscriptSpan superscriptSpan = <span class="keyword">new</span> SuperscriptSpan();</span><br><span class="line">RelativeSizeSpan relativeSizeSpan2 = <span class="keyword">new</span> RelativeSizeSpan(<span class="number">0.5f</span>);</span><br><span class="line">SubscriptSpan subscriptSpan = <span class="keyword">new</span> SubscriptSpan();</span><br><span class="line">StyleSpan styleSpan_B = <span class="keyword">new</span> StyleSpan(Typeface.BOLD);</span><br><span class="line">StyleSpan styleSpan_I = <span class="keyword">new</span> StyleSpan(Typeface.ITALIC);</span><br><span class="line"></span><br><span class="line">ImageSpan imageSpan = <span class="keyword">new</span> ImageSpan(<span class="keyword">this</span>, R.mipmap.ic_launcher);</span><br><span class="line">ClickableSpan clickableSpan = <span class="keyword">new</span> ClickableSpan() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View widget)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(SpannableActivity.<span class="keyword">this</span>, <span class="string">"点击"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDrawState</span><span class="params">(TextPaint ds)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 文字不变色</span></span><br><span class="line">        ds.setUnderlineText(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">URLSpan urlSpan = <span class="keyword">new</span> URLSpan(<span class="string">"http://www.sdwfqin.com"</span>);</span><br><span class="line"></span><br><span class="line">spannableString.setSpan(foregroundColorSpan, <span class="number">0</span>, <span class="number">3</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(backgroundColorSpan, <span class="number">3</span>, <span class="number">6</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(relativeSizeSpan, <span class="number">6</span>, <span class="number">10</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(strikethroughSpan, <span class="number">10</span>, <span class="number">13</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(underlineSpan, <span class="number">13</span>, <span class="number">16</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(superscriptSpan, <span class="number">16</span>, <span class="number">21</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(relativeSizeSpan2, <span class="number">18</span>, <span class="number">21</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(subscriptSpan, <span class="number">21</span>, <span class="number">23</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(styleSpan_B, <span class="number">23</span>, <span class="number">25</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(styleSpan_I, <span class="number">25</span>, <span class="number">27</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(imageSpan, <span class="number">29</span>, <span class="number">31</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(clickableSpan, <span class="number">31</span>, <span class="number">33</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(urlSpan, <span class="number">33</span>, <span class="number">36</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以点击</span></span><br><span class="line">spanString.setMovementMethod(LinkMovementMethod.getInstance());</span><br><span class="line"><span class="comment">// 点击背景色</span></span><br><span class="line"><span class="comment">// spanString.setHighlightColor(Color.parseColor("#36969696"));</span></span><br><span class="line"></span><br><span class="line">spanString.setText(spannableString);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">SpannableString spannableString = <span class="keyword">new</span> SpannableString(<span class="string">&quot;前景色背景色相对大小删除线下划线&quot;</span> +</span><br><span class="line">        <span class="string">&quot;上标小上标下标粗体斜体显示图片点击超链接&quot;</span>);</span><br><span class="line"></span><br><span class="line">ForegroundColorSpan foregroundColorSpan = <span class="keyword">new</span> ForegroundColorSpan(Color.parseColor(<span class="string">&quot;#0099EE&quot;</span>));</span><br><span class="line">BackgroundColorSpan backgroundColorSpan = <span class="keyword">new</span> BackgroundColorSpan(Color.parseColor(<span class="string">&quot;#AC00FF30&quot;</span>));</span><br><span class="line">RelativeSizeSpan relativeSizeSpan = <span class="keyword">new</span> RelativeSizeSpan(<span class="number">2f</span>);</span><br><span class="line">StrikethroughSpan strikethroughSpan = <span class="keyword">new</span> StrikethroughSpan();</span><br><span class="line">UnderlineSpan underlineSpan = <span class="keyword">new</span> UnderlineSpan();</span><br><span class="line">SuperscriptSpan superscriptSpan = <span class="keyword">new</span> SuperscriptSpan();</span><br><span class="line">RelativeSizeSpan relativeSizeSpan2 = <span class="keyword">new</span> RelativeSizeSpan(<span class="number">0.5f</span>);</span><br><span class="line">SubscriptSpan subscriptSpan = <span class="keyword">new</span> SubscriptSpan();</span><br><span class="line">StyleSpan styleSpan_B = <span class="keyword">new</span> StyleSpan(Typeface.BOLD);</span><br><span class="line">StyleSpan styleSpan_I = <span class="keyword">new</span> StyleSpan(Typeface.ITALIC);</span><br><span class="line"></span><br><span class="line">ImageSpan imageSpan = <span class="keyword">new</span> ImageSpan(<span class="keyword">this</span>, R.mipmap.ic_launcher);</span><br><span class="line">ClickableSpan clickableSpan = <span class="keyword">new</span> ClickableSpan() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View widget)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(SpannableActivity.<span class="keyword">this</span>, <span class="string">&quot;点击&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDrawState</span><span class="params">(TextPaint ds)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 文字不变色</span></span><br><span class="line">        ds.setUnderlineText(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">URLSpan urlSpan = <span class="keyword">new</span> URLSpan(<span class="string">&quot;http://www.sdwfqin.com&quot;</span>);</span><br><span class="line"></span><br><span class="line">spannableString.setSpan(foregroundColorSpan, <span class="number">0</span>, <span class="number">3</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(backgroundColorSpan, <span class="number">3</span>, <span class="number">6</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(relativeSizeSpan, <span class="number">6</span>, <span class="number">10</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(strikethroughSpan, <span class="number">10</span>, <span class="number">13</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(underlineSpan, <span class="number">13</span>, <span class="number">16</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(superscriptSpan, <span class="number">16</span>, <span class="number">21</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(relativeSizeSpan2, <span class="number">18</span>, <span class="number">21</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(subscriptSpan, <span class="number">21</span>, <span class="number">23</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(styleSpan_B, <span class="number">23</span>, <span class="number">25</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(styleSpan_I, <span class="number">25</span>, <span class="number">27</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(imageSpan, <span class="number">29</span>, <span class="number">31</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(clickableSpan, <span class="number">31</span>, <span class="number">33</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">spannableString.setSpan(urlSpan, <span class="number">33</span>, <span class="number">36</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以点击</span></span><br><span class="line">spanString.setMovementMethod(LinkMovementMethod.getInstance());</span><br><span class="line"><span class="comment">// 点击背景色</span></span><br><span class="line"><span class="comment">// spanString.setHighlightColor(Color.parseColor(&quot;#36969696&quot;));</span></span><br><span class="line"></span><br><span class="line">spanString.setText(spannableString);</span><br></pre></td></tr></table></figure>
 
 <h1 id="三、SpannableStringBuilder"><a href="#三、SpannableStringBuilder" class="headerlink" title="三、SpannableStringBuilder"></a>三、SpannableStringBuilder</h1><ol>
 <li>增加了类似于StringBuilder的append等方法，可以修改原来的字符串跟样式</li>
 <li>注意：设置文本时不能使用builder的toString()方法，如果您这样做了，那么辛辛苦苦设置的样式并不会显示出来。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SpannableStringBuilder builder = <span class="keyword">new</span> SpannableStringBuilder(<span class="string">"哈哈哈"</span>);</span><br><span class="line">builder.setSpan(foregroundColorSpan, <span class="number">0</span>, <span class="number">3</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">builder.append(<span class="string">"lalala"</span>);</span><br><span class="line"><span class="comment">// 注意：如果使用toString()方法设置的样式就没有了</span></span><br><span class="line">spanBuilder.setText(builder);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SpannableStringBuilder builder = <span class="keyword">new</span> SpannableStringBuilder(<span class="string">&quot;哈哈哈&quot;</span>);</span><br><span class="line">builder.setSpan(foregroundColorSpan, <span class="number">0</span>, <span class="number">3</span>, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">builder.append(<span class="string">&quot;lalala&quot;</span>);</span><br><span class="line"><span class="comment">// 注意：如果使用toString()方法设置的样式就没有了</span></span><br><span class="line">spanBuilder.setText(builder);</span><br></pre></td></tr></table></figure>
 
-<h1 id="四、源码"><a href="#四、源码" class="headerlink" title="四、源码"></a>四、源码</h1><p>源码地址：<a href="https://github.com/sdwfqin/AndroidSamples" target="_blank" rel="noopener">https://github.com/sdwfqin/AndroidSamples</a></p>
+<h1 id="四、源码"><a href="#四、源码" class="headerlink" title="四、源码"></a>四、源码</h1><p>源码地址：<a target="_blank" rel="noopener" href="https://github.com/sdwfqin/AndroidSamples">https://github.com/sdwfqin/AndroidSamples</a></p>
 
     </div>
 
@@ -390,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、简述"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、SpannableString"><span class="nav-number">2.</span> <span class="nav-text">二、SpannableString</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-设置样式："><span class="nav-number">2.1.</span> <span class="nav-text">1.设置样式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-常见样式"><span class="nav-number">2.2.</span> <span class="nav-text">2. 常见样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、SpannableStringBuilder"><span class="nav-number">3.</span> <span class="nav-text">三、SpannableStringBuilder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、源码"><span class="nav-number">4.</span> <span class="nav-text">四、源码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81SpannableString"><span class="nav-number">2.</span> <span class="nav-text">二、SpannableString</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AE%BE%E7%BD%AE%E6%A0%B7%E5%BC%8F%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">1.设置样式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E8%A7%81%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">2. 常见样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81SpannableStringBuilder"><span class="nav-number">3.</span> <span class="nav-text">三、SpannableStringBuilder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%BA%90%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">四、源码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -399,27 +399,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -463,7 +463,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -472,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

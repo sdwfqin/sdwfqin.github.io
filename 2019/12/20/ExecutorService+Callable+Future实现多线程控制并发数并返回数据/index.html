@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -185,7 +185,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -242,12 +242,12 @@
 
       
         <h1 id="一、开始"><a href="#一、开始" class="headerlink" title="一、开始"></a>一、开始</h1><p>多任务并行执行阻塞等待全部执行完毕，通过线程池控制并发数。<br>前半部分为代码（按照执行流程罗列），后半部分为相关注释。</p>
-<a id="more"></a>
-<h1 id="二、创建带有返回数据的Callable"><a href="#二、创建带有返回数据的Callable" class="headerlink" title="二、创建带有返回数据的Callable"></a>二、创建带有返回数据的Callable</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Callable&lt;String&gt; <span class="title">get</span><span class="params">(String key, Map&lt;String, Object&gt; params)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> () -&gt; &#123;</span><br><span class="line">		System.out.println(<span class="string">"开始查询======="</span> + params.toString());</span><br><span class="line">		Thread.sleep(<span class="number">500</span>);</span><br><span class="line">		<span class="keyword">long</span> currentTimeMillis1 = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"get任务耗时:"</span> + (currentTimeMillis1 - currentTimeMillis) + <span class="string">"ms"</span>);</span><br><span class="line">		<span class="keyword">return</span> key + <span class="string">"哈哈哈哈哈哈"</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="二、创建带有返回数据的Callable"><a href="#二、创建带有返回数据的Callable" class="headerlink" title="二、创建带有返回数据的Callable"></a>二、创建带有返回数据的Callable</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Callable&lt;String&gt; <span class="title">get</span><span class="params">(String key, Map&lt;String, Object&gt; params)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> () -&gt; &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始查询=======&quot;</span> + params.toString());</span><br><span class="line">		Thread.sleep(<span class="number">500</span>);</span><br><span class="line">		<span class="keyword">long</span> currentTimeMillis1 = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">&quot;get任务耗时:&quot;</span> + (currentTimeMillis1 - currentTimeMillis) + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> key + <span class="string">&quot;哈哈哈哈哈哈&quot;</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="三、循环调用创建Callable-lt-String-gt"><a href="#三、循环调用创建Callable-lt-String-gt" class="headerlink" title="三、循环调用创建Callable&lt;String&gt;"></a>三、循环调用创建<code>Callable&lt;String&gt;</code></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Callable&lt;String&gt;&gt; tasks = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ... params</span></span><br><span class="line"></span><br><span class="line">	Callable&lt;String&gt; callable = mSmsStatisticsService.get(i + <span class="string">"key"</span>, params);</span><br><span class="line">	tasks.add(callable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、循环调用创建Callable-lt-String-gt"><a href="#三、循环调用创建Callable-lt-String-gt" class="headerlink" title="三、循环调用创建Callable&lt;String&gt;"></a>三、循环调用创建<code>Callable&lt;String&gt;</code></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Callable&lt;String&gt;&gt; tasks = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ... params</span></span><br><span class="line"></span><br><span class="line">	Callable&lt;String&gt; callable = mSmsStatisticsService.get(i + <span class="string">&quot;key&quot;</span>, params);</span><br><span class="line">	tasks.add(callable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="四、创建线程池"><a href="#四、创建线程池" class="headerlink" title="四、创建线程池"></a>四、创建线程池</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * corePoolSize：核心线程数。</span></span><br><span class="line"><span class="comment"> * maximumPoolSize：线程池允许创建的最大线程数。</span></span><br><span class="line"><span class="comment"> * keepAliveTime：非核心线程闲置的超时时间。超过这个时间则回收。</span></span><br><span class="line"><span class="comment"> * TimeUnit：keepAliveTime参数的时间单位。</span></span><br><span class="line"><span class="comment"> * workQueue：任务队列。</span></span><br><span class="line"><span class="comment"> * ThreadFactory：线程工厂，用于创建线程。</span></span><br><span class="line"><span class="comment"> * RejectedExecutionHandler：饱和策略。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * ThreadPoolExecutor(int corePoolSize,</span></span><br><span class="line"><span class="comment"> *                    int maximumPoolSize,</span></span><br><span class="line"><span class="comment"> *                    long keepAliveTime,</span></span><br><span class="line"><span class="comment"> *                    TimeUnit unit,</span></span><br><span class="line"><span class="comment"> *                    BlockingQueue&lt;Runnable&gt; workQueue,</span></span><br><span class="line"><span class="comment"> *                    ThreadFactory threadFactory,</span></span><br><span class="line"><span class="comment"> *                    RejectedExecutionHandler handler)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ExecutorService executorService = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>, <span class="number">32</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;(<span class="number">1024</span>),</span><br><span class="line">                r -&gt; &#123;</span><br><span class="line">                    Thread thread = <span class="keyword">new</span> Thread(r);</span><br><span class="line">                    <span class="comment">// thread.setName("sdwfqin");</span></span><br><span class="line">                    <span class="keyword">return</span> thread;</span><br><span class="line">                &#125;, <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br></pre></td></tr></table></figure>
+<h1 id="四、创建线程池"><a href="#四、创建线程池" class="headerlink" title="四、创建线程池"></a>四、创建线程池</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * corePoolSize：核心线程数。</span></span><br><span class="line"><span class="comment"> * maximumPoolSize：线程池允许创建的最大线程数。</span></span><br><span class="line"><span class="comment"> * keepAliveTime：非核心线程闲置的超时时间。超过这个时间则回收。</span></span><br><span class="line"><span class="comment"> * TimeUnit：keepAliveTime参数的时间单位。</span></span><br><span class="line"><span class="comment"> * workQueue：任务队列。</span></span><br><span class="line"><span class="comment"> * ThreadFactory：线程工厂，用于创建线程。</span></span><br><span class="line"><span class="comment"> * RejectedExecutionHandler：饱和策略。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * ThreadPoolExecutor(int corePoolSize,</span></span><br><span class="line"><span class="comment"> *                    int maximumPoolSize,</span></span><br><span class="line"><span class="comment"> *                    long keepAliveTime,</span></span><br><span class="line"><span class="comment"> *                    TimeUnit unit,</span></span><br><span class="line"><span class="comment"> *                    BlockingQueue&lt;Runnable&gt; workQueue,</span></span><br><span class="line"><span class="comment"> *                    ThreadFactory threadFactory,</span></span><br><span class="line"><span class="comment"> *                    RejectedExecutionHandler handler)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ExecutorService executorService = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>, <span class="number">32</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;(<span class="number">1024</span>),</span><br><span class="line">                r -&gt; &#123;</span><br><span class="line">                    Thread thread = <span class="keyword">new</span> Thread(r);</span><br><span class="line">                    <span class="comment">// thread.setName(&quot;sdwfqin&quot;);</span></span><br><span class="line">                    <span class="keyword">return</span> thread;</span><br><span class="line">                &#125;, <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br></pre></td></tr></table></figure>
 
 <h1 id="五、启动线程并获取返回数据"><a href="#五、启动线程并获取返回数据" class="headerlink" title="五、启动线程并获取返回数据"></a>五、启动线程并获取返回数据</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; resultList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 启动线程并获取返回数据</span></span><br><span class="line">List&lt;Future&lt;String&gt;&gt; futures = executorService.invokeAll(tasks);</span><br><span class="line"><span class="keyword">for</span> (Future&lt;String&gt; future : futures) &#123;</span><br><span class="line">	resultList.add(future.get());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -266,10 +266,10 @@
 </li>
 <li><p>拒绝策略</p>
 <ol>
-<li>ThreadPoolExecutor.AbortPolicy: 丢弃任务并抛出<code>RejectedExecutionException</code>异常。 </li>
-<li>ThreadPoolExecutor.DiscardPolicy: 也是丢弃任务，但是不抛出异常。 </li>
+<li>ThreadPoolExecutor.AbortPolicy: 丢弃任务并抛出<code>RejectedExecutionException</code>异常。 </li>
+<li>ThreadPoolExecutor.DiscardPolicy: 也是丢弃任务，但是不抛出异常。 </li>
 <li>ThreadPoolExecutor.DiscardOldestPolicy: 丢弃队列最前面的任务，执行后面的任务</li>
-<li>ThreadPoolExecutor.CallerRunsPolicy: 由调用线程处理该任务 </li>
+<li>ThreadPoolExecutor.CallerRunsPolicy: 由调用线程处理该任务 </li>
 </ol>
 </li>
 <li><p>阻塞队列</p>
@@ -406,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、开始"><span class="nav-number">1.</span> <span class="nav-text">一、开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、创建带有返回数据的Callable"><span class="nav-number">2.</span> <span class="nav-text">二、创建带有返回数据的Callable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、循环调用创建Callable-lt-String-gt"><span class="nav-number">3.</span> <span class="nav-text">三、循环调用创建Callable&lt;String&gt;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、创建线程池"><span class="nav-number">4.</span> <span class="nav-text">四、创建线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、启动线程并获取返回数据"><span class="nav-number">5.</span> <span class="nav-text">五、启动线程并获取返回数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、关闭线程池"><span class="nav-number">6.</span> <span class="nav-text">六、关闭线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、上述提及API相关解释"><span class="nav-number">7.</span> <span class="nav-text">七、上述提及API相关解释</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%80%E5%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">一、开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%B8%A6%E6%9C%89%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E7%9A%84Callable"><span class="nav-number">2.</span> <span class="nav-text">二、创建带有返回数据的Callable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E5%88%9B%E5%BB%BACallable-lt-String-gt"><span class="nav-number">3.</span> <span class="nav-text">三、循环调用创建Callable&lt;String&gt;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">4.</span> <span class="nav-text">四、创建线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%90%AF%E5%8A%A8%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%8E%B7%E5%8F%96%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE"><span class="nav-number">5.</span> <span class="nav-text">五、启动线程并获取返回数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%85%B3%E9%97%AD%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">6.</span> <span class="nav-text">六、关闭线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E4%B8%8A%E8%BF%B0%E6%8F%90%E5%8F%8AAPI%E7%9B%B8%E5%85%B3%E8%A7%A3%E9%87%8A"><span class="nav-number">7.</span> <span class="nav-text">七、上述提及API相关解释</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -415,27 +415,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -479,7 +479,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -488,12 +488,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

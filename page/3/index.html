@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一介码农，专注于Android CRUD">
+  <meta name="description" content="IT民工">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhang Qin&#39;s blog">
 <meta property="og:url" content="https://sdwfqin.github.io/page/3/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
-<meta property="og:description" content="一介码农，专注于Android CRUD">
+<meta property="og:description" content="IT民工">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="张钦">
 <meta name="twitter:card" content="summary">
@@ -175,12 +175,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="IT民工">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">Android富文本字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-04-10 20:10:20" itemprop="dateCreated datePublished" datetime="2017-04-10T20:10:20+08:00">2017-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/SpannableString20170427153509.png"></p>
+<ul>
+<li>在Android中可以通过SpannableString或SpannableStringBuilder给存储的字符串添加样式，实现简单的富文本效果。</li>
+<li>SpannableString：这是一个文本的类，其内容是不可变的，但可以附加和分离标记对象。</li>
+<li>SpannableStringBuilder：这是文本的类，其内容和标记都可以更改。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/03/13/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -224,7 +324,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.5k</span>
+              <span>5.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -258,9 +358,11 @@
 </li>
 <li><p>致谢：</p>
 <ul>
-<li>docdev：<a href="http://www.docdev.cn/" target="_blank" rel="noopener">http://www.docdev.cn/</a></li>
-<li>hong15007046964：<a href="http://blog.csdn.net/hong15007046964/article/details/51907891" target="_blank" rel="noopener">http://blog.csdn.net/hong15007046964/article/details/51907891</a></li>
+<li>docdev：<a target="_blank" rel="noopener" href="http://www.docdev.cn/">http://www.docdev.cn/</a></li>
+<li>hong15007046964：<a target="_blank" rel="noopener" href="http://blog.csdn.net/hong15007046964/article/details/51907891">http://blog.csdn.net/hong15007046964/article/details/51907891</a></li>
 </ul>
+</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/13/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/#more" rel="contents">
@@ -292,7 +394,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -336,7 +438,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -367,6 +469,8 @@
 </ol>
 </li>
 <li><p>其实我只是感觉这个样子会方便一点（链式调用），至于定义（网上找的）也不怎么很理解</p>
+</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/10/Android%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Builder%E6%A8%A1%E5%BC%8F/#more" rel="contents">
@@ -398,7 +502,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -442,7 +546,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -464,7 +568,7 @@
           <h1 id="一、效果图"><a href="#一、效果图" class="headerlink" title="一、效果图"></a>一、效果图</h1><blockquote>
 <p>使用shape图形做边框,表头使用覆盖（背景黑色，textview灰色，留margin），详细内容请查看源码（文章底部）</p>
 </blockquote>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/table2017042502.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/table2017042502.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/01/TableLayout%E5%8A%A8%E6%80%81%E8%A1%A8%E6%A0%BC/#more" rel="contents">
@@ -496,7 +600,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -540,14 +644,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -562,7 +666,7 @@
           <h1 id="一、回调函数"><a href="#一、回调函数" class="headerlink" title="一、回调函数"></a>一、回调函数</h1><blockquote>
 <p>就像activitie一样，fragment也有它们自己的生命周期。理解fragment的生命周期，可以使你在它们被销毁的时候保存它们的实例，这样在它们重新被创建的时候，就能恢复它们之前的状态。</p>
 </blockquote>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/fragment_smzq.png" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/fragment_smzq.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/02/12/Fragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%90%84%E7%8A%B6%E6%80%81%E5%92%8C%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8/#more" rel="contents">
@@ -594,7 +698,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -638,7 +742,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.4k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -660,8 +764,7 @@
           <h1 id="一、是什么？"><a href="#一、是什么？" class="headerlink" title="一、是什么？"></a>一、是什么？</h1><ol>
 <li>“a library for composing asynchronous and event-based programs using observable sequences for the Java VM”（一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库）。简单的异步处理，扩展的观察者模式，灵活的线程控制。</li>
 <li>感谢掘金作者Season的Rxjava2.0系列文章。</li>
-<li>Github项目地址：<code>https://github.com/ReactiveX/RxJava
- https://github.com/ReactiveX/RxAndroid</code></li>
+<li>Github项目地址：<code> https://github.com/ReactiveX/RxJava  https://github.com/ReactiveX/RxAndroid</code></li>
 </ol>
           <!--noindex-->
             <div class="post-button">
@@ -694,7 +797,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -790,7 +893,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -834,7 +937,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -856,7 +959,7 @@
           <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><ul>
 <li>可以拖动的底部弹窗</li>
 </ul>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/bottomsheet2017042502.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/bottomsheet2017042502.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/09/18/BottomSheet%E5%BA%95%E9%83%A8%E5%BC%B9%E7%AA%97/#more" rel="contents">
@@ -888,7 +991,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -932,7 +1035,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -952,9 +1055,9 @@
 
       
           <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><ol>
-<li><p>本文主要介绍View动画的平移、缩放、旋转和透明动画，帧动画，还有LayoutAnimation及Activity跳转动画。</p>
-</li>
-<li><p>View动画建议使用XML来定义，文件的路径是res/anim/[动画文件名].xml。</p>
+<li>本文主要介绍View动画的平移、缩放、旋转和透明动画，帧动画，还有LayoutAnimation及Activity跳转动画。</li>
+<li>View动画建议使用XML来定义，文件的路径是res/anim/[动画文件名].xml。</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/08/28/View%E5%8A%A8%E7%94%BB%EF%BC%88Tween%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BB%EF%BC%89/#more" rel="contents">
@@ -986,7 +1089,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1030,7 +1133,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1050,119 +1153,10 @@
 
       
           <h1 id="一，简介"><a href="#一，简介" class="headerlink" title="一，简介"></a>一，简介</h1><p>PopupWindow这个类用来实现一个弹出框，可以使用任意布局的View作为其内容，这个弹出框是悬浮在当前activity之上的。</p>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/popupwindow2017042901.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/popupwindow2017042901.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/08/19/PopupWindow%E5%BC%B9%E7%AA%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang Qin's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">Picasso图片下载与缓存</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-07-28 15:52:23" itemprop="dateCreated datePublished" datetime="2016-07-28T15:52:23+08:00">2016-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一，简介"><a href="#一，简介" class="headerlink" title="一，简介"></a>一，简介</h1><ol>
-<li><p>picasso是Square公司开源的一个Android图形缓存库，地址<a href="https://github.com/square/picasso" target="_blank" rel="noopener">https://github.com/square/picasso</a> ，可以实现图片下载和缓存功能。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(<span class="string">"http://i.imgur.com/DvpvklR.png"</span>).into(imageView);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>特性</p>
-<ul>
-<li>在adapter中回收和取消当前的下载；</li>
-<li>使用最少的内存完成复杂的图形转换操作；</li>
-<li>自动的内存和硬盘缓存；</li>
-<li>图形转换操作，如变换大小，旋转等，提供了接口来让用户可以自定义转换操作；</li>
-<li>加载载网络或本地资源；</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://square.github.io/picasso/static/sample.png" alt=""></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1246,27 +1240,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1310,7 +1304,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1319,12 +1313,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

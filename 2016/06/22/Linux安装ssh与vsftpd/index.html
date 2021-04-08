@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -185,7 +185,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -252,7 +252,7 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh localhost </span><br><span class="line">//表示未安装  </span><br><span class="line">ssh: connect to host localhost port 22: Connection refused</span><br></pre></td></tr></table></figure></li>
 <li><p>使用apt安装</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
-<a id="more"></a></li>
+<span id="more"></span></li>
 <li><p>启动服务</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/ssh start\</span><br></pre></td></tr></table></figure></li>
 <li><p>查看服务是否正常启动</p>
@@ -264,15 +264,14 @@
 <li><p>centos安装与使用</p>
 <ol>
 <li><p>检测是否安装</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep ssh</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep ssh</span><br></pre></td></tr></table></figure></li>
 <li><p>安装</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure></li>
 <li><p>启动ssh</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd start</span><br></pre></td></tr></table></figure></li>
 <li><p>设置开机运行</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig sshd on</span><br></pre></td></tr></table></figure></li>
-<li><p>参考链接：<a href="http://www.centoscn.com/CentOS/config/2013/0926/1713.html" target="_blank" rel="noopener">http://www.centoscn.com/CentOS/config/2013/0926/1713.html</a></p>
+<li><p>参考链接：<a target="_blank" rel="noopener" href="http://www.centoscn.com/CentOS/config/2013/0926/1713.html">http://www.centoscn.com/CentOS/config/2013/0926/1713.html</a></p>
 </li>
 </ol>
 </li>
@@ -282,7 +281,7 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure></li>
 <li><p>有时可能需要更新软件源</p>
 </li>
-<li><p>详细设置，参考大神：<a href="http://www.cnblogs.com/likwo/p/3154868.html" target="_blank" rel="noopener">http://www.cnblogs.com/likwo/p/3154868.html</a></p>
+<li><p>详细设置，参考大神：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/likwo/p/3154868.html">http://www.cnblogs.com/likwo/p/3154868.html</a></p>
 </li>
 </ol>
 
@@ -386,7 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通过安装ssh与vsftpd-实现Xshell远程控制"><span class="nav-number">1.</span> <span class="nav-text">通过安装ssh与vsftpd 实现Xshell远程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装ssh"><span class="nav-number">1.1.</span> <span class="nav-text">一、安装ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二，安装vsftpd实现文件传输"><span class="nav-number">1.2.</span> <span class="nav-text">二，安装vsftpd实现文件传输</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%AE%89%E8%A3%85ssh%E4%B8%8Evsftpd-%E5%AE%9E%E7%8E%B0Xshell%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">通过安装ssh与vsftpd 实现Xshell远程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85ssh"><span class="nav-number">1.1.</span> <span class="nav-text">一、安装ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8C%E5%AE%89%E8%A3%85vsftpd%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="nav-number">1.2.</span> <span class="nav-text">二，安装vsftpd实现文件传输</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -395,27 +394,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -459,7 +458,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -468,12 +467,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -187,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -230,7 +230,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -252,21 +252,17 @@
         <blockquote>
 <p>先拖张图压压惊，没错，就是官方的介绍图片</p>
 </blockquote>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt=""></p>
-<a id="more"></a>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png"></p>
+<span id="more"></span>
 <h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><ol>
 <li><p>正常的执行流程（完整生存期）</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onCreate() -&gt; onStart() -&gt; onResume() -&gt; 运行中 -&gt; 另一个活动来到前台 -&gt; onPause() -&gt; onStop() -&gt; onDestroy()</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onCreate() -&gt; onStart() -&gt; onResume() -&gt; 运行中 -&gt; 另一个活动来到前台 -&gt; onPause() -&gt; onStop() -&gt; onDestroy()</span><br></pre></td></tr></table></figure></li>
 <li><p>从不可见到可见（可见生存期）</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onStop() -&gt; onRestart() -&gt; onStart() -&gt; onResume() -&gt; ...</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onStop() -&gt; onRestart() -&gt; onStart() -&gt; onResume() -&gt; ...</span><br></pre></td></tr></table></figure></li>
 <li><p>可见无焦点到可见有焦点（前台生存期）</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onPause() -&gt; onResume() -&gt; ...</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onPause() -&gt; onResume() -&gt; ...</span><br></pre></td></tr></table></figure></li>
 <li><p>进程被杀死时(App process killed)</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onStop() -&gt; onCreate() -&gt; ...</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onStop() -&gt; onCreate() -&gt; ...  </span><br></pre></td></tr></table></figure></li>
 <li><p>解释一下这几种状态</p>
 <ul>
 <li>可见、无焦点：onResume()，onPause()</li>
@@ -289,7 +285,7 @@
 </ul>
 </li>
 </ol>
-<h1 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--AndroidManifest.xml--&gt;</span><br><span class="line">&lt;!--设置方式，launchMode --&gt;</span><br><span class="line">&lt;activity android:name=<span class="string">".MainActivity"</span></span><br><span class="line">    android:launchMode=<span class="string">"singleTop"</span></span><br><span class="line">    android:label=<span class="string">"AndroidDialog"</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span><br><span class="line">        &lt;category android:name=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--AndroidManifest.xml--&gt;</span><br><span class="line">&lt;!--设置方式，launchMode --&gt;</span><br><span class="line">&lt;activity android:name=<span class="string">&quot;.MainActivity&quot;</span></span><br><span class="line">    android:launchMode=<span class="string">&quot;singleTop&quot;</span></span><br><span class="line">    android:label=<span class="string">&quot;AndroidDialog&quot;</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=<span class="string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span><br><span class="line">        &lt;category android:name=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span>/&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li><p>standard（默认）</p>
@@ -406,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期"><span class="nav-number">1.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备旋转与Activity生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">设备旋转与Activity生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动模式"><span class="nav-number">2.</span> <span class="nav-text">启动模式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%97%8B%E8%BD%AC%E4%B8%8EActivity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.</span> <span class="nav-text">设备旋转与Activity生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">启动模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -415,27 +411,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -479,7 +475,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -488,12 +484,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

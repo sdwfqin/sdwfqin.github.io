@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -187,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -230,7 +230,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -252,29 +252,32 @@
         <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><ul>
 <li>可以拖动的底部弹窗</li>
 </ul>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/bottomsheet2017042502.gif" alt=""></p>
-<a id="more"></a>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/bottomsheet2017042502.gif"></p>
+<span id="more"></span>
 
 <h1 id="二、xml代码"><a href="#二、xml代码" class="headerlink" title="二、xml代码"></a>二、xml代码</h1><blockquote>
 <p>BottomSheets需要配合CoordinatorLayout控件</p>
 </blockquote>
-<pre><code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CoordinatorLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    	... ...</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.v4.widget.NestedScrollView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/nsv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#000"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:behavior_hideable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">app:behavior_peekHeight</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_behavior</span>=<span class="string">"@string/bottom_sheet_behavior"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"100dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">           </span><br><span class="line">			... ...</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.v4.widget.NestedScrollView</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><blockquote>
+<pre><code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.CoordinatorLayout</span><br><span class="line">        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    	... ...</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v4.widget.NestedScrollView</span><br><span class="line">        android:id=&quot;@+id/nsv&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:background=&quot;#000&quot;</span><br><span class="line">        app:behavior_hideable=&quot;true&quot;</span><br><span class="line">		app:behavior_peekHeight=&quot;0dp&quot;</span><br><span class="line">        app:layout_behavior=&quot;@string/bottom_sheet_behavior&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;100dp&quot;</span><br><span class="line">            android:gravity=&quot;center&quot;</span><br><span class="line">            android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">           </span><br><span class="line">			... ...</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.v4.widget.NestedScrollView</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<blockquote>
 <p>包含的app属性</p>
 </blockquote>
-<pre><code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app:behavior_hideable="true"</span><br><span class="line">app:behavior_peekHeight="0dp"</span><br><span class="line">app:layout_behavior="@string/bottom_sheet_behavior"</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app:behavior_hideable=&quot;true&quot;</span><br><span class="line">app:behavior_peekHeight=&quot;0dp&quot;</span><br><span class="line">app:layout_behavior=&quot;@string/bottom_sheet_behavior&quot;</span><br></pre></td></tr></table></figure>
 
 1. `app:behavior_peekHeight=&quot;50dp&quot;` `peekHeight`是当`BottomSheets`关闭的时候，底部我们能看到的高度,默认是0不可见。
 2. `app:behavior_hideable=&quot;true&quot;` `hideable`是当我们拖拽下拉的时候，`bottomsheet`是否能全部隐藏。
-3. `layout_behavior`指向`bottom_sheet_behavio`r,代表这是一个`bottomSheets`</code></pre><h1 id="三、Java代码及常用API介绍"><a href="#三、Java代码及常用API介绍" class="headerlink" title="三、Java代码及常用API介绍"></a>三、Java代码及常用API介绍</h1><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">NestedScrollView scrollingView = (NestedScrollView) findViewById(R.id.nsv);</span><br><span class="line">mBottomSheetBehavior = BottomSheetBehavior.from(scrollingView);</span><br><span class="line"></span><br><span class="line">Button button = (Button) findViewById(R.id.btn);</span><br><span class="line">button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 通过点击按钮设置开启或关闭</span></span><br><span class="line">        <span class="keyword">if</span> (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) &#123;</span><br><span class="line">            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//回掉监听</span></span><br><span class="line">mBottomSheetBehavior.setBottomSheetCallback(<span class="keyword">new</span> BottomSheetBehavior.BottomSheetCallback() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStateChanged</span><span class="params">(@NonNull View bottomSheet, <span class="keyword">int</span> newState)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">"onStateChanged: "</span> + <span class="string">"状态改变"</span> + newState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSlide</span><span class="params">(@NonNull View bottomSheet, <span class="keyword">float</span> slideOffset)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">"onSlide: "</span> + slideOffset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></code></pre><ol>
+3. `layout_behavior`指向`bottom_sheet_behavio`r,代表这是一个`bottomSheets`
+</code></pre>
+<h1 id="三、Java代码及常用API介绍"><a href="#三、Java代码及常用API介绍" class="headerlink" title="三、Java代码及常用API介绍"></a>三、Java代码及常用API介绍</h1><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">NestedScrollView scrollingView = (NestedScrollView) findViewById(R.id.nsv);</span><br><span class="line">mBottomSheetBehavior = BottomSheetBehavior.from(scrollingView);</span><br><span class="line"></span><br><span class="line">Button button = (Button) findViewById(R.id.btn);</span><br><span class="line">button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 通过点击按钮设置开启或关闭</span></span><br><span class="line">        <span class="keyword">if</span> (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) &#123;</span><br><span class="line">            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//回掉监听</span></span><br><span class="line">mBottomSheetBehavior.setBottomSheetCallback(<span class="keyword">new</span> BottomSheetBehavior.BottomSheetCallback() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStateChanged</span><span class="params">(<span class="meta">@NonNull</span> View bottomSheet, <span class="keyword">int</span> newState)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onStateChanged: &quot;</span> + <span class="string">&quot;状态改变&quot;</span> + newState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSlide</span><span class="params">(<span class="meta">@NonNull</span> View bottomSheet, <span class="keyword">float</span> slideOffset)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onSlide: &quot;</span> + slideOffset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ol>
 <li><p>弹窗状态</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//public static final int STATE_DRAGGING = 1;//拖动</span></span><br><span class="line"><span class="comment">//public static final int STATE_SETTLING = 2;//沉降中</span></span><br><span class="line"><span class="comment">//public static final int STATE_EXPANDED = 3;//打开了</span></span><br><span class="line"><span class="comment">//public static final int STATE_COLLAPSED = 4;//关闭</span></span><br><span class="line"><span class="comment">//public static final int STATE_HIDDEN = 5;//隐藏</span></span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//public static final int STATE_DRAGGING = 1;//拖动</span></span><br><span class="line"><span class="comment">//public static final int STATE_SETTLING = 2;//沉降中</span></span><br><span class="line"><span class="comment">//public static final int STATE_EXPANDED = 3;//打开了</span></span><br><span class="line"><span class="comment">//public static final int STATE_COLLAPSED = 4;//关闭</span></span><br><span class="line"><span class="comment">//public static final int STATE_HIDDEN = 5;//隐藏</span></span><br></pre></td></tr></table></figure></li>
 <li><p>设置当前状态</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);</span><br></pre></td></tr></table></figure>
-
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="四、项目地址"><a href="#四、项目地址" class="headerlink" title="四、项目地址"></a>四、项目地址</h1><p><a href="https://github.com/sdwfqin/AndroidSamples" target="_blank" rel="noopener">https://github.com/sdwfqin/AndroidSamples</a></p>
+<h1 id="四、项目地址"><a href="#四、项目地址" class="headerlink" title="四、项目地址"></a>四、项目地址</h1><p><a target="_blank" rel="noopener" href="https://github.com/sdwfqin/AndroidSamples">https://github.com/sdwfqin/AndroidSamples</a></p>
 
     </div>
 
@@ -376,7 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、简述"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、xml代码"><span class="nav-number">2.</span> <span class="nav-text">二、xml代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Java代码及常用API介绍"><span class="nav-number">3.</span> <span class="nav-text">三、Java代码及常用API介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、项目地址"><span class="nav-number">4.</span> <span class="nav-text">四、项目地址</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81xml%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">二、xml代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81Java%E4%BB%A3%E7%A0%81%E5%8F%8A%E5%B8%B8%E7%94%A8API%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">三、Java代码及常用API介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">四、项目地址</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -385,27 +388,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -449,7 +452,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -458,12 +461,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

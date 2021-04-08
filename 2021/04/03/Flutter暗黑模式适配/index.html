@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、简介Flutter的深色模式以及跟随系统设置比较简单，我感觉需要注意的是开发过程中尽量使用Theme中的颜色与样式，开发过程中遇到的比较大的坑就是provider的一些问题，可能是因为我用的版本新一些，网上找了很多文章，总会遇到一些问题。本文的深色模式适配是通过修改themeMode来实现的，供诸位有缘人参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter暗黑模式适配">
+<meta property="og:url" content="https://sdwfqin.github.io/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/index.html">
+<meta property="og:site_name" content="Zhang Qin&#39;s blog">
+<meta property="og:description" content="一、简介Flutter的深色模式以及跟随系统设置比较简单，我感觉需要注意的是开发过程中尽量使用Theme中的颜色与样式，开发过程中遇到的比较大的坑就是provider的一些问题，可能是因为我用的版本新一些，网上找了很多文章，总会遇到一些问题。本文的深色模式适配是通过修改themeMode来实现的，供诸位有缘人参考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/76ce6d244039bb7fb74a62e43e1e9ab5.png">
+<meta property="article:published_time" content="2021-04-03T07:26:00.000Z">
+<meta property="article:modified_time" content="2021-04-03T08:56:13.696Z">
+<meta property="article:author" content="张钦">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/76ce6d244039bb7fb74a62e43e1e9ab5.png">
+
+<link rel="canonical" href="https://sdwfqin.github.io/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Flutter暗黑模式适配 | Zhang Qin's blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?717bd4be07b3622f876968917253cb6b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Zhang Qin's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello Everyone</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/sdwfqin" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="IT民工">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flutter暗黑模式适配
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-03 15:26:00 / 修改时间：16:56:13" itemprop="dateCreated datePublished" datetime="2021-04-03T15:26:00+08:00">2021-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>Flutter的深色模式以及跟随系统设置比较简单，我感觉需要注意的是开发过程中尽量使用Theme中的颜色与样式，开发过程中遇到的比较大的坑就是<code>provider</code>的一些问题，可能是因为我用的版本新一些，网上找了很多文章，总会遇到一些问题。本文的深色模式适配是通过修改<code>themeMode</code>来实现的，供诸位有缘人参考。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/76ce6d244039bb7fb74a62e43e1e9ab5.png" alt="image.png"></p>
+<span id="more"></span>
+<h1 id="二、环境介绍"><a href="#二、环境介绍" class="headerlink" title="二、环境介绍"></a>二、环境介绍</h1><ol>
+<li><p>Flutter: 2.0.3</p>
+</li>
+<li><p>Dart: 2.12.0</p>
+</li>
+<li><p>provider: 5.0.0</p>
+<p> 状态管理，用于运行时切换主题</p>
+</li>
+<li><p>shared_preferences: 2.0.5</p>
+</li>
+</ol>
+<p>数据持久化，用于保存当前选中的主题，以便下次启动时读取使用用户选择的主题</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="attr">sdk:</span> <span class="string">&quot;&gt;=2.12.0 &lt;3.0.0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter:</span></span><br><span class="line">    <span class="attr">sdk:</span> <span class="string">flutter</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 忽略了一些依赖...</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># shared_preferences https://pub.flutter-io.cn/packages/shared_preferences</span></span><br><span class="line">  <span class="attr">shared_preferences:</span> <span class="string">^2.0.5</span></span><br><span class="line">  <span class="comment"># 全局状态管理 https://github.com/rrousselGit/provider/blob/master/resources/translations/zh-CN/README.md</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">^5.0.0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="三、主题"><a href="#三、主题" class="headerlink" title="三、主题"></a>三、主题</h1><ol>
+<li><p>ThemeData</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">factory</span> ThemeData(&#123;</span><br><span class="line">    Brightness brightness, <span class="comment">// 应用主题亮度，可选（dark、light）</span></span><br><span class="line">    VisualDensity visualDensity, <span class="comment">// 视觉密度</span></span><br><span class="line">    MaterialColor primarySwatch, <span class="comment">// 主要样式，设置primaryColor后该背景色会被覆盖</span></span><br><span class="line">    Color primaryColor, <span class="comment">// 主要部分背景颜色（导航和tabBar等）</span></span><br><span class="line">    Brightness primaryColorBrightness, <span class="comment">// primaryColor的亮度</span></span><br><span class="line">    Color primaryColorLight, <span class="comment">// primaryColor的浅色版</span></span><br><span class="line">    Color primaryColorDark, <span class="comment">// primaryColor的深色版</span></span><br><span class="line">    Color accentColor, <span class="comment">// 前景色（文本，按钮等）</span></span><br><span class="line">    Brightness accentColorBrightness, <span class="comment">// accentColor的亮度</span></span><br><span class="line">    Color canvasColor, <span class="comment">// MaterialType.canvas 的默认颜色</span></span><br><span class="line">    Color shadowColor, <span class="comment">// 阴影颜色</span></span><br><span class="line">    Color scaffoldBackgroundColor, <span class="comment">// Scaffold的背景颜色。典型Material应用程序或应用程序内页面的背景颜色</span></span><br><span class="line">    Color bottomAppBarColor, <span class="comment">// BottomAppBar的默认颜色</span></span><br><span class="line">    Color cardColor, <span class="comment">// Card的颜色</span></span><br><span class="line">    Color dividerColor, <span class="comment">// Divider和PopupMenuDivider的颜色，也用于ListTile之间、DataTable的行之间等。</span></span><br><span class="line">    Color focusColor, <span class="comment">// 突出颜色</span></span><br><span class="line">    Color hoverColor, <span class="comment">//  hoverColor</span></span><br><span class="line">    Color highlightColor, <span class="comment">// 高亮颜色,选中在泼墨动画期间使用的突出显示颜色，或用于指示菜单中的项。</span></span><br><span class="line">    Color splashColor, <span class="comment">// 墨水飞溅的颜色。InkWell</span></span><br><span class="line">    InteractiveInkFeatureFactory splashFactory, <span class="comment">// 定义由InkWell和InkResponse反应产生的墨溅的外观。</span></span><br><span class="line">    Color selectedRowColor, <span class="comment">// 用于突出显示选定行的颜色。</span></span><br><span class="line">    Color unselectedWidgetColor, <span class="comment">// 用于处于非活动(但已启用)状态的小部件的颜色。例如，未选中的复选框。通常与accentColor形成对比。也看到disabledColor。</span></span><br><span class="line">    Color disabledColor, <span class="comment">// 禁用状态下部件的颜色，无论其当前状态如何。例如，一个禁用的复选框(可以选中或未选中)。</span></span><br><span class="line">    Color buttonColor, <span class="comment">// RaisedButton按钮中使用的Material 的默认填充颜色。</span></span><br><span class="line">    ButtonThemeData buttonTheme, <span class="comment">// 定义按钮部件的默认配置，</span></span><br><span class="line">    ToggleButtonsThemeData toggleButtonsTheme, <span class="comment">// 切换按钮的主题</span></span><br><span class="line">    Color secondaryHeaderColor, <span class="comment">// 选定行时PaginatedDataTable标题的颜色。</span></span><br><span class="line">    Color textSelectionColor, <span class="comment">// 文本框中文本选择的颜色，如TextField</span></span><br><span class="line">    Color cursorColor, <span class="comment">// 文本框中光标的颜色，如TextField</span></span><br><span class="line">    Color textSelectionHandleColor, <span class="comment">// 调整当前选定的文本部分的句柄的颜色。</span></span><br><span class="line">    Color backgroundColor, <span class="comment">// 与主色形成对比的颜色，例如用作进度条的剩余部分。</span></span><br><span class="line">    Color dialogBackgroundColor, <span class="comment">// Dialog元素的背景颜色</span></span><br><span class="line">    Color indicatorColor, <span class="comment">// 选项卡中选定的选项卡指示器的颜色。</span></span><br><span class="line">    Color hintColor, <span class="comment">// 用于提示文本或占位符文本的颜色，例如在TextField中。</span></span><br><span class="line">    Color errorColor, <span class="comment">// 用于输入验证错误的颜色，例如在TextField中</span></span><br><span class="line">    Color toggleableActiveColor, <span class="comment">// 用于突出显示Switch、Radio和Checkbox等可切换小部件的活动状态的颜色。</span></span><br><span class="line">    <span class="built_in">String</span> fontFamily, <span class="comment">// 文本字体</span></span><br><span class="line">    TextTheme textTheme, <span class="comment">// 文本的颜色与卡片和画布的颜色形成对比。</span></span><br><span class="line">    TextTheme primaryTextTheme, <span class="comment">// 与primaryColor形成对比的文本主题</span></span><br><span class="line">    TextTheme accentTextTheme, <span class="comment">// 与accentColor形成对比的文本主题。</span></span><br><span class="line">    InputDecorationTheme inputDecorationTheme, <span class="comment">// 基于这个主题的 InputDecorator、TextField和TextFormField的默认InputDecoration值。</span></span><br><span class="line">    TabBarTheme tabBarTheme, <span class="comment">// 用于自定义选项卡栏指示器的大小、形状和颜色的主题。</span></span><br><span class="line">    TooltipThemeData tooltipTheme, <span class="comment">// tooltip主题</span></span><br><span class="line">    CardTheme cardTheme, <span class="comment">// Card的颜色和样式</span></span><br><span class="line">    AppBarTheme appBarTheme, <span class="comment">// appBar主题</span></span><br><span class="line">    ColorScheme colorScheme, <span class="comment">// 拥有13种颜色，可用于配置大多数组件的颜色。</span></span><br><span class="line">    NavigationRailThemeData navigationRailTheme, <span class="comment">// 导航边栏主题</span></span><br><span class="line">  	<span class="comment">// ...</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>main.dart or MaterialApp</p>
+</li>
+</ol>
+<p><code>theme</code>为默认主题，<code>darkTheme</code>为深色主题，<code>themeMode</code>为当前使用哪个主题，可选值<code>system</code>、<code>light</code>、<code>dark</code>，只有在<code>th``eme</code>与<code>darkTheme</code>都设置的时候才会生效，我们的<code>theme</code>与<code>darkTheme</code>都直接使用<code>ThemeData</code>对象，给他指定了<code>brightness</code>，而不是使用这样感觉可以方便修改样式，当然也可以抽出来封装一下，我这没有去处理。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">  theme: ThemeData(</span><br><span class="line">    brightness: Brightness.light,</span><br><span class="line">    <span class="comment">// scaffoldBackgroundColor: Color(0xFFF5F5F9),</span></span><br><span class="line">  ),</span><br><span class="line">  darkTheme: ThemeData(</span><br><span class="line">    brightness: Brightness.dark,</span><br><span class="line">    <span class="comment">// scaffoldBackgroundColor: Color(0xFFF5F5F9),</span></span><br><span class="line">  ),</span><br><span class="line">  themeMode: context.watch&lt;ThemeModel&gt;().theme</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="四、全局配置"><a href="#四、全局配置" class="headerlink" title="四、全局配置"></a>四、全局配置</h1><p>全局配置是在<code>MaterialApp</code>加载之前进行一写初始化操作，参考了<a target="_blank" rel="noopener" href="https://book.flutterchina.club/">《Flutter实战》</a>电子书，Flutter当中<code>SharedPreferences</code>是异步初始化，还有<code>Dio</code>网络请求的缓存也需要提前初始化，我们这里<code>SharedPreferences</code>加载完之后在进行之后的操作，<code>SpUtils</code>中的<code>SharedPreferences</code>使用的<code>Global</code>全局配置中的静态属性。</p>
+<ol>
+<li>Global</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Global</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">late</span> SharedPreferences prefs;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> ThemeMode theme = ThemeMode.light;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 是否为release版</span></span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">bool</span> <span class="keyword">get</span> isRelease =&gt; <span class="built_in">bool</span>.fromEnvironment(<span class="string">&quot;dart.vm.product&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//初始化全局信息，会在APP启动时执行</span></span><br><span class="line">  <span class="keyword">static</span> Future init() <span class="keyword">async</span> &#123;</span><br><span class="line">    WidgetsFlutterBinding.ensureInitialized();</span><br><span class="line">    prefs = <span class="keyword">await</span> SharedPreferences.getInstance();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前本地存储的主题</span></span><br><span class="line">    <span class="built_in">String</span> themeValue = <span class="keyword">await</span> SpUtils.instance.getStorage(SpConstants.skin);</span><br><span class="line">    theme = themeStringToThemeMode(themeValue);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化网络请求相关配置</span></span><br><span class="line">    HttpManager();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>main.dart</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global加载完成后掉用runApp</span></span><br><span class="line">Global.init().then((e) =&gt; runApp());</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>themeStringToThemeMode()</li>
+</ol>
+<p>字符串转<code>ThemeMode</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ThemeMode themeStringToThemeMode(<span class="built_in">String</span> themeValue)&#123;</span><br><span class="line">  ThemeMode theme = ThemeMode.light;</span><br><span class="line">  <span class="keyword">switch</span> (themeValue) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;light&quot;</span>:</span><br><span class="line">      theme = ThemeMode.light;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;dark&quot;</span>:</span><br><span class="line">      theme = ThemeMode.dark;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;system&quot;</span>:</span><br><span class="line">      theme = ThemeMode.system;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> theme;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="五、使用状态管理（provider）切换主题"><a href="#五、使用状态管理（provider）切换主题" class="headerlink" title="五、使用状态管理（provider）切换主题"></a>五、使用状态管理（provider）切换主题</h1><blockquote>
+<p>此处大坑，处处劝退，感谢<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31054411/article/details/109221161">Flutter provider劝退经历</a>这篇文章</p>
+</blockquote>
+<ol>
+<li>构建主题Model</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThemeModel</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取当前主题，如果为设置主题，则默认使用浅色模式</span></span><br><span class="line">  ThemeMode <span class="keyword">get</span> theme =&gt; Global.theme;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 主题改变后，通知其依赖项，新主题会立即生效</span></span><br><span class="line">  <span class="keyword">set</span> theme(ThemeMode themeMode) &#123;</span><br><span class="line">    <span class="keyword">if</span> (themeMode != theme) &#123;</span><br><span class="line">      Global.theme = themeMode;</span><br><span class="line">      notifyListeners();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>main.dart(监听值变化)</li>
+</ol>
+<p>此处为<code>main.dart</code>文件的完整代码，下面有关<code>provider</code>的一些使用方式可能与网上很多文章不一样的，但是这都是<a target="_blank" rel="noopener" href="https://github.com/rrousselGit/provider/blob/master/resources/translations/zh-CN/README.md">官网文档</a>的最新推荐使用方式。读取当前<code>provider</code>中存储的主题<code>context.watch&lt;ThemeModel&gt;().theme</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  <span class="comment">//顶部状态栏透明</span></span><br><span class="line">  SystemChrome.setSystemUIOverlayStyle(</span><br><span class="line">      SystemUiOverlayStyle(statusBarColor: Colors.transparent));</span><br><span class="line">  Global.init().then((e) =&gt; runApp(</span><br><span class="line">        MultiProvider(</span><br><span class="line">            providers: [ListenableProvider&lt;ThemeModel&gt;(create: (_) =&gt; ThemeModel())],</span><br><span class="line">            builder: (context, child) &#123;</span><br><span class="line">              <span class="keyword">return</span> WanAndroid();</span><br><span class="line">            &#125;),</span><br><span class="line">      ));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WanAndroid</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      initialRoute: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        brightness: Brightness.light,</span><br><span class="line">        <span class="comment">// scaffoldBackgroundColor: Color(0xFFF5F5F9),</span></span><br><span class="line">      ),</span><br><span class="line">      darkTheme: ThemeData(</span><br><span class="line">        brightness: Brightness.dark,</span><br><span class="line">        <span class="comment">// scaffoldBackgroundColor: Color(0xFFF5F5F9),</span></span><br><span class="line">      ),</span><br><span class="line">      themeMode: context.watch&lt;ThemeModel&gt;().theme,</span><br><span class="line">      routes: &#123;</span><br><span class="line">        <span class="string">&#x27;/&#x27;</span>: (context) =&gt; SplashPage(),</span><br><span class="line">        <span class="string">&#x27;/index&#x27;</span>: (context) =&gt; IndexPage(),</span><br><span class="line">        <span class="string">&#x27;/login&#x27;</span>: (context) =&gt; LoginPage(),</span><br><span class="line">        <span class="string">&#x27;/setting&#x27;</span>: (context) =&gt; SettingPage(),</span><br><span class="line">      &#125;,</span><br><span class="line">      title: <span class="string">&#x27;玩Android-Flutter版&#x27;</span>,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>切换主题</li>
+</ol>
+<p>修改<code>provider</code>中保存的值即可。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// themeStringToThemeMode方法代码在上面有写</span></span><br><span class="line">context.read&lt;ThemeModel&gt;().theme = themeStringToThemeMode(value);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="六、源码"><a href="#六、源码" class="headerlink" title="六、源码"></a>六、源码</h1><ul>
+<li>源码：<a target="_blank" rel="noopener" href="https://github.com/sdwfqin/flutter_wanandroid">https://github.com/sdwfqin/flutter_wanandroid</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>张钦
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sdwfqin.github.io/2021/04/03/Flutter%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D/" title="Flutter暗黑模式适配">https://sdwfqin.github.io/2021/04/03/Flutter暗黑模式适配/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/27/%E5%9F%BA%E4%BA%8EHilt+Retrofit+%E5%8D%8F%E7%A8%8B%E7%9A%84MVVM%E6%A8%A1%E5%BC%8F%E6%8E%A2%E7%B4%A2/" rel="prev" title="基于Hilt+Retrofit+协程的MVVM模式探索">
+      <i class="fa fa-chevron-left"></i> 基于Hilt+Retrofit+协程的MVVM模式探索
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">二、环境介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">三、主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">四、全局配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%EF%BC%88provider%EF%BC%89%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">五、使用状态管理（provider）切换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%BA%90%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">六、源码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张钦"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">张钦</p>
+  <div class="site-description" itemprop="description">IT民工</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sdwfqin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/580b923a67f3560057b415ec" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;580b923a67f3560057b415ec" rel="noopener" target="_blank"><i class="fa fa-fw fa-bug"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/sdwfqin" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;sdwfqin" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sdwfqin@icloud.com" title="E-Mail → mailto:sdwfqin@icloud.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张钦</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">177k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:41</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

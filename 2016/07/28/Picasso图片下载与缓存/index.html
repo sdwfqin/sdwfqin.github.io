@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一，简介 picasso是Square公司开源的一个Android图形缓存库，地址https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;picasso ，可以实现图片下载和缓存功能。  1Picasso.with(context).load(&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;DvpvklR.png&quot;).into(imageView);  特性  在adapter中回收和取消当前的下载； 使用最">
+  <meta name="description" content="一，简介 picasso是Square公司开源的一个Android图形缓存库，地址https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;picasso ，可以实现图片下载和缓存功能。  1Picasso.with(context).load(&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;DvpvklR.png&quot;).into(imageView); 特性  在adapter中回收和取消当">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Picasso图片下载与缓存">
 <meta property="og:url" content="https://sdwfqin.github.io/2016/07/28/Picasso%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
-<meta property="og:description" content="一，简介 picasso是Square公司开源的一个Android图形缓存库，地址https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;picasso ，可以实现图片下载和缓存功能。  1Picasso.with(context).load(&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;DvpvklR.png&quot;).into(imageView);  特性  在adapter中回收和取消当前的下载； 使用最">
+<meta property="og:description" content="一，简介 picasso是Square公司开源的一个Android图形缓存库，地址https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;picasso ，可以实现图片下载和缓存功能。  1Picasso.with(context).load(&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;DvpvklR.png&quot;).into(imageView); 特性  在adapter中回收和取消当">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://square.github.io/picasso/static/sample.png">
 <meta property="article:published_time" content="2016-07-28T07:52:23.000Z">
@@ -186,7 +186,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -229,7 +229,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -249,9 +249,8 @@
 
       
         <h1 id="一，简介"><a href="#一，简介" class="headerlink" title="一，简介"></a>一，简介</h1><ol>
-<li><p>picasso是Square公司开源的一个Android图形缓存库，地址<a href="https://github.com/square/picasso" target="_blank" rel="noopener">https://github.com/square/picasso</a> ，可以实现图片下载和缓存功能。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(<span class="string">"http://i.imgur.com/DvpvklR.png"</span>).into(imageView);</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>picasso是Square公司开源的一个Android图形缓存库，地址<a target="_blank" rel="noopener" href="https://github.com/square/picasso">https://github.com/square/picasso</a> ，可以实现图片下载和缓存功能。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(<span class="string">&quot;http://i.imgur.com/DvpvklR.png&quot;</span>).into(imageView);</span><br></pre></td></tr></table></figure></li>
 <li><p>特性</p>
 <ul>
 <li>在adapter中回收和取消当前的下载；</li>
@@ -262,44 +261,34 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://square.github.io/picasso/static/sample.png" alt=""></p>
-<a id="more"></a>
+<p><img src="https://square.github.io/picasso/static/sample.png"></p>
+<span id="more"></span>
 
 <h1 id="二、基本使用"><a href="#二、基本使用" class="headerlink" title="二、基本使用"></a>二、基本使用</h1><ol>
 <li><p>Adapter中的使用</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//View复用会自动察觉并且取消之前的下载任务</span></span><br><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">	SquaredImageView view = (SquaredImageView) convertView;</span><br><span class="line">	<span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</span><br><span class="line">	view = <span class="keyword">new</span> SquaredImageView(context);</span><br><span class="line">	&#125;</span><br><span class="line">	String url = getItem(position);</span><br><span class="line">	Picasso.with(context).load(url).into(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//View复用会自动察觉并且取消之前的下载任务</span></span><br><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">	SquaredImageView view = (SquaredImageView) convertView;</span><br><span class="line">	<span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</span><br><span class="line">	view = <span class="keyword">new</span> SquaredImageView(context);</span><br><span class="line">	&#125;</span><br><span class="line">	String url = getItem(position);</span><br><span class="line">	Picasso.with(context).load(url).into(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>图片转换</p>
 <ol>
-<li><p>转换图片以适应布局大小并减少内存占用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">	.load(url)</span><br><span class="line">	.resize(<span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">	.centerCrop()</span><br><span class="line">	.into(imageView);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义转换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将CropSquareTransformation 的对象传递给transform 方法即可。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CropSquareTransformation</span> <span class="keyword">implements</span> <span class="title">Transformation</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Bitmap <span class="title">transform</span><span class="params">(Bitmap source)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> size = Math.min(source.getWidth(), source.getHeight());</span><br><span class="line">		<span class="keyword">int</span> x = (source.getWidth() - size) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> y = (source.getHeight() - size) / <span class="number">2</span>;</span><br><span class="line">		Bitmap result = Bitmap.createBitmap(source, x, y, size, size);</span><br><span class="line">		<span class="keyword">if</span> (result != source) &#123;</span><br><span class="line">		  source.recycle();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">  	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">key</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"square()"</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>转换图片以适应布局大小并减少内存占用</li>
 </ol>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">	.load(url)</span><br><span class="line">	.resize(<span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">	.centerCrop()</span><br><span class="line">	.into(imageView);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>自定义转换</li>
+</ol>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将CropSquareTransformation 的对象传递给transform 方法即可。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CropSquareTransformation</span> <span class="keyword">implements</span> <span class="title">Transformation</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Bitmap <span class="title">transform</span><span class="params">(Bitmap source)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> size = Math.min(source.getWidth(), source.getHeight());</span><br><span class="line">		<span class="keyword">int</span> x = (source.getWidth() - size) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> y = (source.getHeight() - size) / <span class="number">2</span>;</span><br><span class="line">		Bitmap result = Bitmap.createBitmap(source, x, y, size, size);</span><br><span class="line">		<span class="keyword">if</span> (result != source) &#123;</span><br><span class="line">		  source.recycle();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">  	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">key</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;square()&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ol start="3">
 <li><p>占位符（空白或者错误占位图片）</p>
 <ul>
-<li><p>picasso提供了两种占位图片，未加载完成或者加载发生错误的时需要一张图片作为提示。</p>
-</li>
-<li><p>如果加载发生错误会重复三次请求，三次都失败才会显示erro Place holder</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">    .load(url)</span><br><span class="line">    .placeholder(R.drawable.user_placeholder)</span><br><span class="line">    .error(R.drawable.user_placeholder_error)</span><br><span class="line">	.into(imageView);</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>picasso提供了两种占位图片，未加载完成或者加载发生错误的时需要一张图片作为提示。</li>
+<li>如果加载发生错误会重复三次请求，三次都失败才会显示erro Place holder</li>
 </ul>
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">    .load(url)</span><br><span class="line">    .placeholder(R.drawable.user_placeholder)</span><br><span class="line">    .error(R.drawable.user_placeholder_error)</span><br><span class="line">	.into(imageView);</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ol start="4">
 <li><p>资源文件的加载：除了加载网络图片picasso还支持加载Resources, assets, files, content providers中的资源文件。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(R.drawable.landing_screen).into(imageView1);</span><br><span class="line">Picasso.with(context).load(<span class="keyword">new</span> File(...)).into(imageView2);</span><br></pre></td></tr></table></figure>
-
-</li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(R.drawable.landing_screen).into(imageView1);</span><br><span class="line">Picasso.with(context).load(<span class="keyword">new</span> File(...)).into(imageView2);</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="三、一段小代码"><a href="#三、一段小代码" class="headerlink" title="三、一段小代码"></a>三、一段小代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ViewCompat.setTransitionName(mPhotoView, mImageUrl);</span><br><span class="line">Picasso.with(getActivity()).load(mImageUrl)</span><br><span class="line">        .into(mPhotoView, <span class="keyword">new</span> Callback() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				<span class="comment">// 隐藏进度条</span></span><br><span class="line">                progressBar.setVisibility(View.GONE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                progressBar.setVisibility(View.GONE);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
     </div>
@@ -401,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一，简介"><span class="nav-number">1.</span> <span class="nav-text">一，简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、基本使用"><span class="nav-number">2.</span> <span class="nav-text">二、基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、一段小代码"><span class="nav-number">3.</span> <span class="nav-text">三、一段小代码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%EF%BC%8C%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">一，简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">二、基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E6%AE%B5%E5%B0%8F%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">三、一段小代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -410,27 +399,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -474,7 +463,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -483,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

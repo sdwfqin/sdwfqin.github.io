@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -185,7 +185,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -250,7 +250,7 @@
         <h1 id="一、从Activity返回到Fragment刷新页面"><a href="#一、从Activity返回到Fragment刷新页面" class="headerlink" title="一、从Activity返回到Fragment刷新页面"></a>一、从Activity返回到Fragment刷新页面</h1><p>问题：从Fragment跳转到Activity后有Activity返回到起跳的Fragment数据无法刷新（方法不是很优雅，勉强可是实现，如果您知道更好的方法，望告知，谢谢！）</p>
 <p>解决方案：<br>在onStart()方法中在调用一次加载数据的方法。</p>
 <p>简要分析：<br>Fragment跳转到Activity中会调用onStop()方法，此时页面内容不会发生改变，当activity页面finsh掉后Fragment可见，将会执行onStart()方法。</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onResume();</span><br><span class="line">    initData();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -366,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、从Activity返回到Fragment刷新页面"><span class="nav-number">1.</span> <span class="nav-text">一、从Activity返回到Fragment刷新页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、在Fragment中嵌套使用viewpagerindicator切换Fragment返回后出现空白页"><span class="nav-number">2.</span> <span class="nav-text">二、在Fragment中嵌套使用viewpagerindicator切换Fragment返回后出现空白页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、关于FragmentPagerAdapter页面预加载的解决方案"><span class="nav-number">3.</span> <span class="nav-text">三、关于FragmentPagerAdapter页面预加载的解决方案</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%8EActivity%E8%BF%94%E5%9B%9E%E5%88%B0Fragment%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">一、从Activity返回到Fragment刷新页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8Fragment%E4%B8%AD%E5%B5%8C%E5%A5%97%E4%BD%BF%E7%94%A8viewpagerindicator%E5%88%87%E6%8D%A2Fragment%E8%BF%94%E5%9B%9E%E5%90%8E%E5%87%BA%E7%8E%B0%E7%A9%BA%E7%99%BD%E9%A1%B5"><span class="nav-number">2.</span> <span class="nav-text">二、在Fragment中嵌套使用viewpagerindicator切换Fragment返回后出现空白页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%B3%E4%BA%8EFragmentPagerAdapter%E9%A1%B5%E9%9D%A2%E9%A2%84%E5%8A%A0%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">三、关于FragmentPagerAdapter页面预加载的解决方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -375,27 +375,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -439,7 +439,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -448,12 +448,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

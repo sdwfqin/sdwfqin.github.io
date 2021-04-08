@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"sdwfqin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一介码农，专注于Android CRUD">
+  <meta name="description" content="IT民工">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhang Qin&#39;s blog">
 <meta property="og:url" content="https://sdwfqin.github.io/page/2/index.html">
 <meta property="og:site_name" content="Zhang Qin&#39;s blog">
-<meta property="og:description" content="一介码农，专注于Android CRUD">
+<meta property="og:description" content="IT民工">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="张钦">
 <meta name="twitter:card" content="summary">
@@ -175,12 +175,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="张钦">
+      <meta itemprop="description" content="IT民工">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Qin's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Retrofit统一异常处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-02-26 17:15:41" itemprop="dateCreated datePublished" datetime="2018-02-26T17:15:41+08:00">2018-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-02-27 10:31:08" itemprop="dateModified" datetime="2018-02-27T10:31:08+08:00">2018-02-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、杂谈"><a href="#一、杂谈" class="headerlink" title="一、杂谈"></a>一、杂谈</h1><p>前一阵子博客备案因为名字问题被驳回了两次也是够了，现在在公司里一直写业务代码，这让本来就不会的算法的我算法水平更加烂，最近在跟着优酷上的一个小姐姐学魔方，智商跟不太上了啊哈哈哈哈哈。OK，步入正题，名字叫Retrofit异常处理，可是内容应该主要是针对网络的统一异常处理，我之前的异常处理都是在BaseActivity或者是BaseFragment中去添加一个方法，然后在网络请求有问题时去调用这个方法，但是后来我把我用频率较多的代码（包括Base）打包发布了一个仓库<a target="_blank" rel="noopener" href="https://github.com/sdwfqin/AndroidQuick">AndroidQuick</a>，这样的话我的异常处理就没法在Base层里面处理了，而且本身的处理方式就有很多不完善的地方。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/02/26/Retrofit%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/12/15/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -277,7 +372,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -321,7 +416,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.3k</span>
+              <span>5.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -344,7 +439,7 @@
 <li>Android在7.0中修改了文件权限，所以从Android7.0开始要使用FileProvider来处理uri，从网上找了好多文章，解决了在7.0下拍照及相册选图的问题，但是参照网上的解决方案前切图片一直搞不定，最终使用了UCrop进行剪切图片并返回文件地址，便于与服务器交互。</li>
 <li>本文主要介绍在Android7.0上进行拍照，相册选图以及相应的图片剪切，当然也会向下兼容，同时我也在Android4.3的手机上进行了测试，在文章最后我会附上源码，会有我自认为详细的注释哈哈。</li>
 </ol>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/camera2017091401.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/camera2017091401.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/09/14/Android7.0%E6%8B%8D%E7%85%A7%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8uCrop%E8%A3%81%E5%89%AA/#more" rel="contents">
@@ -376,7 +471,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -420,7 +515,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -441,7 +536,7 @@
       
           <h1 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h1><ol>
 <li>使用Kotlin以单例形式做了一个简单的Retrofit封装，因为业务需要，要将token添加到请求头当中，所以使用了okhttp的拦截器做了简单封装，使其能够满足当前的业务需求，可以能够动态修改拦截器中的请求头信息。额(⊙﹏⊙)描述实在是写不了，还是看代码吧。</li>
-<li>如果对于Retrofit或RxJava还不是很了解可以看一下<a href="http://www.sdwfqin.com" target="_blank" rel="noopener">我的博客</a>早些时候的文章了解一下。</li>
+<li>如果对于Retrofit或RxJava还不是很了解可以看一下<a target="_blank" rel="noopener" href="http://www.sdwfqin.com/">我的博客</a>早些时候的文章了解一下。</li>
 </ol>
           <!--noindex-->
             <div class="post-button">
@@ -474,7 +569,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -574,7 +669,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -618,7 +713,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.1k</span>
+              <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -638,7 +733,7 @@
 
       
           <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><p>Dagger2是一个Android目前较为主流的依赖注入框架，最早的版本Dagger1 由Square公司开发,现在Dagger2由谷歌接手开发，主要用于模块间解耦，提高代码的健壮性和可维护性。之前也断断续续看过好多文章，今天正式学习一下。并且额外介绍下如何在Kotlin中使用Dagger2，写的不好，还请见谅！</p>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/dagger2_20170524.png" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/dagger2_20170524.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/05/24/%E6%88%91%E6%89%80%E7%90%86%E8%A7%A3%E7%9A%84Dagger2/#more" rel="contents">
@@ -670,7 +765,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -714,7 +809,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.3k</span>
+              <span>6.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -738,7 +833,7 @@
 <li>Retrofit是Square公司开发的一款针对Android网络请求的框架,Retrofit2底层基于OkHttp实现的,OkHttp现在已经得到Google官方认可。</li>
 <li>其实写不写这个我是纠结了好久的，Retrofit太高深，也从网上看了好多教程，对于菜菜的我真不敢写，但是最后还是抱着以后方便查阅的心态写了下来。</li>
 <li>本文目前只讲了Retrofit入门，get请求，post请求，以及如何与rxjava结合，后期可能会继续完善，文中的接口除第一个入门例字外其它的两个是我简单写的放在了腾讯云的学生机上（感谢腾讯云！）。</li>
-<li>Retrofit项目地址：<a href="https://github.com/square/retrofit" target="_blank" rel="noopener">https://github.com/square/retrofit</a></li>
+<li>Retrofit项目地址：<a target="_blank" rel="noopener" href="https://github.com/square/retrofit">https://github.com/square/retrofit</a></li>
 </ol>
           <!--noindex-->
             <div class="post-button">
@@ -771,7 +866,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -815,14 +910,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
+              <span>5.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -838,7 +933,7 @@
 <li>或多或少老哥们都了解自定义View是啥，本篇文章选了一个比较简单的例子来当做示例，希望大佬们能够喜欢。</li>
 <li>知识点：自定义属性attrs的简单使用，通过继承View重写onDraw方法使用Canvas来绘制，关于Canvas的用法和View基础可以看我前面写的文章。</li>
 </ul>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/viewz22017051001.gif" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/viewz22017051001.gif"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/05/10/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/#more" rel="contents">
@@ -870,7 +965,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -914,7 +1009,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.3k</span>
+              <span>5.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -973,7 +1068,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1037,122 +1132,18 @@
 
       
           <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><ol>
-<li><p>本文主要包含Canvas（画布）与Paint（画笔）,详细介绍了相关api。</p>
-</li>
-<li><p>canvas的所有的单位均为像素，下文demo仅适配分辨率1080*1920的屏幕。</p>
-</li>
-<li><p>关于view基础及dp与px的转换可以看<strong>View位置及触摸事件</strong>这篇文章。</p>
-</li>
-<li><p>请注意一个问题：如果在onDraw方法中绘制的，但是onDraw方法没有走，请在构造函数中添加<code>setWillNotDraw(false);</code>。</p>
-<blockquote>
+<li>本文主要包含Canvas（画布）与Paint（画笔）,详细介绍了相关api。</li>
+<li>canvas的所有的单位均为像素，下文demo仅适配分辨率1080*1920的屏幕。</li>
+<li>关于view基础及dp与px的转换可以看<strong>View位置及触摸事件</strong>这篇文章。</li>
+<li>请注意一个问题：如果在onDraw方法中绘制的，但是onDraw方法没有走，请在构造函数中添加<code>setWillNotDraw(false);</code>。<blockquote>
 <p>解释：设置view是否更改，如果开发者用自定义的view，重写onDraw（）应该将调用此方法设置为false，这样程序会调用自定义的布局。</p>
 </blockquote>
 </li>
 </ol>
-<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/canvas2017042801.png" alt=""></p>
+<p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/canvas2017042801.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/04/15/Canvas%E7%BB%98%E5%9B%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sdwfqin.github.io/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang Qin's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">Android富文本字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-10 20:10:20" itemprop="dateCreated datePublished" datetime="2017-04-10T20:10:20+08:00">2017-04-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2018-02-27 10:19:06" itemprop="dateModified" datetime="2018-02-27T10:19:06+08:00">2018-02-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h1><p><img src="https://sdwfqin1-1252249614.costj.myqcloud.com/blog/SpannableString20170427153509.png" alt=""></p>
-<ul>
-<li>在Android中可以通过SpannableString或SpannableStringBuilder给存储的字符串添加样式，实现简单的富文本效果。</li>
-<li>SpannableString：这是一个文本的类，其内容是不可变的，但可以附加和分离标记对象。</li>
-<li>SpannableStringBuilder：这是文本的类，其内容和标记都可以更改。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/10/Android%E5%AF%8C%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1236,27 +1227,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1300,7 +1291,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1309,12 +1300,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

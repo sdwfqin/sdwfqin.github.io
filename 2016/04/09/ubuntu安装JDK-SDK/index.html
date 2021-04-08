@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ic_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ic_16.png">
@@ -185,7 +185,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="张钦">
-      <meta itemprop="description" content="一介码农，专注于Android CRUD">
+      <meta itemprop="description" content="IT民工">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -249,31 +249,24 @@
       
         <ol>
 <li><p>解压文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf xxx.tar.gz</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf xxx.tar.gz </span><br></pre></td></tr></table></figure></li>
 <li><p>建立目录</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /usr/lib/jvm</span><br></pre></td></tr></table></figure>
-<a id="more"></a></li>
+<span id="more"></span></li>
 <li><p>将解压后的文件夹移动到jvm文件夹并重命名为jdk1.8</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv jdk1.8.0_77/ /usr/lib/jvm/jdk1.8</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv jdk1.8.0_77/ /usr/lib/jvm/jdk1.8</span><br></pre></td></tr></table></figure></li>
 <li><p>设置环境变量 /etc/profile</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8</span><br><span class="line">export JRE_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8&#x2F;jre</span><br><span class="line">export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib:$JRE_HOME&#x2F;lib:$CLASSPATH</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$JRE_HOME&#x2F;bin:$JAVA_HOME:$PATH</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8</span><br><span class="line">export JRE_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8&#x2F;jre</span><br><span class="line">export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib:$JRE_HOME&#x2F;lib:$CLASSPATH</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$JRE_HOME&#x2F;bin:$JAVA_HOME:$PATH</span><br></pre></td></tr></table></figure></li>
 <li><p>将当前jdk设置为默认</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8/bin/java 300</span><br><span class="line">sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8/bin/javac 300</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8/bin/java 300</span><br><span class="line">sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8/bin/javac 300</span><br></pre></td></tr></table></figure></li>
 <li><p>SDK配置</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SDK_HOME&#x3D;&#x2F;opt&#x2F;android&#x2F;sdk</span><br><span class="line">export PATH&#x3D;$SDK_HOME&#x2F;tools:$SDK_HOME&#x2F;platform-tools:$SDK_HOME:$PATH</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SDK_HOME&#x3D;&#x2F;opt&#x2F;android&#x2F;sdk</span><br><span class="line">export PATH&#x3D;$SDK_HOME&#x2F;tools:$SDK_HOME&#x2F;platform-tools:$SDK_HOME:$PATH</span><br></pre></td></tr></table></figure></li>
 <li><p>其他</p>
 <ol>
 <li><p>环境变量修改前建议先备份一下方便后期恢复</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/profile /etc/profile.bak</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/profile /etc/profile.bak</span><br></pre></td></tr></table></figure></li>
 <li><p>环境变量</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile　　注销登录后生效　　</span><br><span class="line">/etc/environment　　重启后生效</span><br><span class="line">~/.bashrc　　　重新打开bash生效</span><br></pre></td></tr></table></figure>
-</li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile　　注销登录后生效　　</span><br><span class="line">/etc/environment　　重启后生效</span><br><span class="line">~/.bashrc　　　重新打开bash生效</span><br></pre></td></tr></table></figure></li>
 <li><p>两条信息解释</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">android需要root权限执行</span><br><span class="line">bash: /opt/Android/Sdk/tools/android: 权限不够</span><br><span class="line">sudo只能对系统的命令使用</span><br><span class="line">sudo：android: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -385,27 +378,27 @@
     <img class="site-author-image" itemprop="image" alt="张钦"
       src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">张钦</p>
-  <div class="site-description" itemprop="description">一介码农，专注于Android CRUD</div>
+  <div class="site-description" itemprop="description">IT民工</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -449,7 +442,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -458,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">177k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
